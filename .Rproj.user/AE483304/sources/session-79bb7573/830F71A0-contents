@@ -1,7 +1,0 @@
-descr <- data %>%  
-  summarise(mean_age = mean(age),
-            sd_age = sd(age),
-            mean_change = mean(change)
-            sd_change = sd(change))
-
-view(desc) # view the updated descriptives
