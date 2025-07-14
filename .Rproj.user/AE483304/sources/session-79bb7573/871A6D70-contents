@@ -1,0 +1,141 @@
+# Session 1: Starting with R
+
+## Download Slides and Data Files
+
+Slides: [here](downloads/startr.pdf).
+
+Data file: height.csv [here](downloads/height.csv).
+
+Data file sleep.csv [here](downloads/sleep.csv).
+
+Data file: intervention.csv [here](downloads/intervention.csv).
+
+## Code Used Below:
+
+This is the code used from slide 42 onwards:
+
+### Install and Load Package:
+
+``` r
+install.packages("tidyverse") # install only if needed
+library(tidyverse) # always load the package before starting
+```
+Code for the first data file:
+
+``` r
+data <- read_csv("height.csv")
+
+print(data)
+view(data)
+```
+### Calculating Descriptive Statistics
+
+``` r
+rm(data) # will remove the object called “data”.
+
+data <- read_csv(“sleep.csv”) # new data set
+```
+Explore the new data set:
+
+``` r
+head(data) #view the first few rows
+summary(data) #quick summary of the data set
+names(data) #check variable names
+```
+
+Count and pipe `%>%`:
+
+``` r
+data %>%
+	count(condition) 
+```
+
+Means and Standard Deviations:
+
+``` r
+descr <- data %>%  
+	summarise(mean_age = mean(age),
+	          sd_age = sd(age),
+	          mean_change = mean(change))
+
+view(desc) # view the descriptives
+```
+
+Add standard deviation for `change`:
+
+``` r
+descr <- data %>%  
+	summarise(mean_age = mean(age),
+	          sd_age = sd(age),
+	          mean_change = mean(change)
+	          sd_change = sd(change))
+
+view(desc) # view the updated descriptives
+```
+
+Using `group_by()`:
+``` r
+descr <- data %>%
+  group_by(condition) %>%
+	summarise(mean_age = mean(age),
+	          sd_age = sd(age),
+	          mean_change = mean(change)
+	          sd_change = sd(change))
+```
+
+### Distributions
+
+Histogram:
+
+``` r
+ggplot(data, aes(x = change, fill = condition)) +
+      geom_histogram(colour = "black")
+```
+
++ `facet_wrap()`
+
+``` r
+ggplot(data, aes(x = change, fill = condition)) +
+      geom_histogram(colour = "black") +
+      facet_wrap(~ condition)
+```
+
+Density Plot:
+
+```r
+ggplot(data, aes(x = change, fill = condition)) +
+      geom_density(alpha = .5)
+```
+
++ `facet_wrap()`
+
+```r
+ggplot(data, aes(x = change, fill = condition)) +
+      geom_density(alpha = .5)
+      facet_wrap(~ condition)
+```
+
+Box Plot:
+
+```r
+ggplot(data, aes(x = condition, y = change)) +
+      geom_boxplot(width = .4) +
+      theme_classic()
+```
+
+### Wide-form to Long-form Data:
+
+```r
+Wide_data <- read_csv(“intervention.csv”)
+
+view(wide_data)
+```
+
+```r
+names(wide_data)
+
+long_data <- wide_data %>%  
+	pivot_longer(cols = c(pre, post), 
+	names_to = "time_point", 
+	values_to = "sleep_score")
+```

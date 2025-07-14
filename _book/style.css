@@ -1,0 +1,31 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+.copy-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #007ACC;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.copy-button:hover {
+  background: #005fa3;
+}
