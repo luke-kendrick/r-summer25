@@ -3,16 +3,16 @@
     "path": "C:/Users/Luke Kendrick/OneDrive - Royal Holloway University of London/RHUL/bookdown_projects/r-summer25/01-session-1.Rmd",
     "project_path": "01-session-1.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1579688086",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1752512975332.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "14,35",
+        "cursorPosition": "12,18",
         "scrollLine": "8",
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
@@ -21,11 +21,11 @@
         "rmdVisualModeLocation": "219:191.3333282470703"
     },
     "folds": "",
-    "lastKnownWriteTime": 1752515316,
+    "lastKnownWriteTime": 1752530041,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1752529248178,
+    "last_content_update": 1752530041773,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -10,9 +10,9 @@ Data file sleep.csv [here](downloads/sleep.csv).
 
 Data file: intervention.csv [here](downloads/intervention.csv).
 
-## Code Used Below:
+## Code Used in this Session:
 
-This is the code used from slide 42 onwards:
+This is the code used from slide 42:
 
 ### Install and Load Package:
 
