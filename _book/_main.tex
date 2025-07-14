@@ -113,12 +113,12 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={R Training Summer 2025},
-  pdfauthor={Luke Kendrick},
+  pdfauthor={Luke Kendrick / Victoria Bourne},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{R Training Summer 2025}
-\author{Luke Kendrick}
+\author{Luke Kendrick / Victoria Bourne}
 \date{2025-07-14}
 
 \begin{document}
@@ -131,9 +131,11 @@
 \chapter*{Psychology @ Royal Holloway University of London R Training}\label{psychology-royal-holloway-university-of-london-r-training}
 \addcontentsline{toc}{chapter}{Psychology @ Royal Holloway University of London R Training}
 
-Summer 2025
+Summer/Autumn Sessions 2025
 
 \chapter{Session 1: Starting with R}\label{session-1-starting-with-r}
+
+\section{Download Slides and Data Files}\label{download-slides-and-data-files}
 
 Slides: \href{downloads/startr.pdf}{here}.
 
@@ -141,13 +143,177 @@ Data file: height.csv \href{downloads/height.csv}{here}.
 
 Data file sleep.csv \href{downloads/sleep.csv}{here}.
 
-Data file: intervention.csv \href{downloads/sleep.csv}{here}.
+Data file: intervention.csv \href{downloads/intervention.csv}{here}.
 
 \section{Code Used Below:}\label{code-used-below}
 
+This is the code used from slide 42 onwards:
+
+\subsection{Install and Load Package:}\label{install-and-load-package}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data }
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{) }\CommentTok{\# install only if needed}
+\FunctionTok{library}\NormalTok{(tidyverse) }\CommentTok{\# always load the package before starting}
+\end{Highlighting}
+\end{Shaded}
+
+Code for the first data file:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"height.csv"}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(data)}
+\FunctionTok{view}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Calculating Descriptive Statistics}\label{calculating-descriptive-statistics}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(data) }\CommentTok{\# will remove the object called “data”.}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(“sleep.csv”) }\CommentTok{\# new data set}
+\end{Highlighting}
+\end{Shaded}
+
+Explore the new data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(data) }\CommentTok{\#view the first few rows}
+\FunctionTok{summary}\NormalTok{(data) }\CommentTok{\#quick summary of the data set}
+\FunctionTok{names}\NormalTok{(data) }\CommentTok{\#check variable names}
+\end{Highlighting}
+\end{Shaded}
+
+Count and pipe \texttt{\%\textgreater{}\%}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{count}\NormalTok{(condition) }
+\end{Highlighting}
+\end{Shaded}
+
+Means and Standard Deviations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{descr }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}  
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_age =} \FunctionTok{mean}\NormalTok{(age),}
+              \AttributeTok{sd\_age =} \FunctionTok{sd}\NormalTok{(age),}
+              \AttributeTok{mean\_change =} \FunctionTok{mean}\NormalTok{(change))}
+
+\FunctionTok{view}\NormalTok{(desc) }\CommentTok{\# view the descriptives}
+\end{Highlighting}
+\end{Shaded}
+
+Add standard deviation for \texttt{change}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{descr }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}  
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_age =} \FunctionTok{mean}\NormalTok{(age),}
+              \AttributeTok{sd\_age =} \FunctionTok{sd}\NormalTok{(age),}
+              \AttributeTok{mean\_change =} \FunctionTok{mean}\NormalTok{(change)}
+              \AttributeTok{sd\_change =} \FunctionTok{sd}\NormalTok{(change))}
+
+\FunctionTok{view}\NormalTok{(desc) }\CommentTok{\# view the updated descriptives}
+\end{Highlighting}
+\end{Shaded}
+
+Using \texttt{group\_by()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{descr }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(condition) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_age =} \FunctionTok{mean}\NormalTok{(age),}
+              \AttributeTok{sd\_age =} \FunctionTok{sd}\NormalTok{(age),}
+              \AttributeTok{mean\_change =} \FunctionTok{mean}\NormalTok{(change)}
+              \AttributeTok{sd\_change =} \FunctionTok{sd}\NormalTok{(change))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Distributions}\label{distributions}
+
+Histogram:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ change, }\AttributeTok{fill =}\NormalTok{ condition)) }\SpecialCharTok{+}
+      \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{facet\_wrap()}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ change, }\AttributeTok{fill =}\NormalTok{ condition)) }\SpecialCharTok{+}
+      \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ condition)}
+\end{Highlighting}
+\end{Shaded}
+
+Density Plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ change, }\AttributeTok{fill =}\NormalTok{ condition)) }\SpecialCharTok{+}
+      \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{facet\_wrap()}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ change, }\AttributeTok{fill =}\NormalTok{ condition)) }\SpecialCharTok{+}
+      \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{)}
+      \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ condition)}
+\end{Highlighting}
+\end{Shaded}
+
+Box Plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ condition, }\AttributeTok{y =}\NormalTok{ change)) }\SpecialCharTok{+}
+      \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{width =}\NormalTok{ .}\DecValTok{4}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{theme\_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Wide-form to Long-form Data:}\label{wide-form-to-long-form-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Wide\_data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(“intervention.csv”)}
+
+\FunctionTok{view}\NormalTok{(wide\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(wide\_data)}
+
+\NormalTok{long\_data }\OtherTok{\textless{}{-}}\NormalTok{ wide\_data }\SpecialCharTok{\%\textgreater{}\%}  
+    \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(pre, post), }
+    \AttributeTok{names\_to =} \StringTok{"time\_point"}\NormalTok{, }
+    \AttributeTok{values\_to =} \StringTok{"sleep\_score"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 

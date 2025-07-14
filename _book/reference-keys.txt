@@ -1,12 +1,9 @@
 session-1-starting-with-r
+download-slides-and-data-files
 code-used-below
-session-2-correlation-and-regression
-session-3-t-tests-and-anovas
-install-relevant-packages
-code-for-the-new-data-set-sleep.csv
-distributions
-pivot-longer-intervention.csv
 install-and-load-package
 calculating-descriptive-statistics
+distributions
 wide-form-to-long-form-data
-download-slides-and-data-files
+session-2-correlation-and-regression
+session-3-t-tests-and-anovas
