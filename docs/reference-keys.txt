@@ -1,0 +1,9 @@
+session-1-starting-with-r
+download-slides-and-data-files
+code-used-below
+install-and-load-package
+calculating-descriptive-statistics
+distributions
+wide-form-to-long-form-data
+session-2-correlation-and-regression
+session-3-t-tests-and-anovas
