@@ -1,6 +1,6 @@
 session-1-starting-with-r
 download-slides-and-data-files
-code-used-below
+code-used-in-this-session
 install-and-load-package
 calculating-descriptive-statistics
 distributions
