@@ -2,6 +2,8 @@
 
 ## Download Slides and Data Files
 
+Install R and RStudio [Here](https://posit.co/download/rstudio-desktop/)
+
 Slides: [here](downloads/startr.pdf).
 
 Data file: height.csv [here](downloads/height.csv).
