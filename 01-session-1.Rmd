@@ -111,7 +111,7 @@ ggplot(data, aes(x = change, fill = condition)) +
 
 ```r
 ggplot(data, aes(x = change, fill = condition)) +
-      geom_density(alpha = .5)
+      geom_density(alpha = .5) +
       facet_wrap(~ condition)
 ```
 
