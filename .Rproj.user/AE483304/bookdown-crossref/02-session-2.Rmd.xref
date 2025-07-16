@@ -1,2 +1,18 @@
 h1:session-2-correlation-and-regression Session 2: Correlation and Regression
+h2:code-used-in-this-session Code Used in this Session:
+h3:setting-up SETTING UP
+h3:running-the-descriptive-statistics RUNNING THE DESCRIPTIVE STATISTICS
+h3:creating-scatterplots CREATING SCATTERPLOTS
+h3:running-pearsons-correlations RUNNING PEARSON’S CORRELATIONS
+h3:running-partial-correlations RUNNING PARTIAL CORRELATIONS
+h3:comparing-two-correlations COMPARING TWO CORRELATIONS
+h3:multiple-regression-with-continuous-predictor-variables MULTIPLE REGRESSION WITH CONTINUOUS PREDICTOR VARIABLES
+h3:hierarchical-regression HIERARCHICAL REGRESSION
+h3:multiple-regression-with-continuous-and-binary-predictors MULTIPLE REGRESSION WITH CONTINUOUS AND BINARY PREDICTORS
+h3:multiple-regression-with-interactive-predictors MULTIPLE REGRESSION WITH INTERACTIVE PREDICTORS
+h3:assumptions-of-multiple-regression ASSUMPTIONS OF MULTIPLE REGRESSION
+h4:multicollinearity MULTICOLLINEARITY
+h4:distribution-of-residuals DISTRIBUTION OF RESIDUALS
+h4:homoscedasticity HOMOSCEDASTICITY
+h4:evaluate-the-number-of-outliers EVALUATE THE NUMBER OF OUTLIERS
 
