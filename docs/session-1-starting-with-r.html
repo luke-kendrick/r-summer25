@@ -23,7 +23,7 @@
 <meta name="author" content="Luke Kendrick / Victoria Bourne" />
 
 
-<meta name="date" content="2025-07-14" />
+<meta name="date" content="2025-07-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +148,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2.4" data-path="session-1-starting-with-r.html"><a href="session-1-starting-with-r.html#wide-form-to-long-form-data"><i class="fa fa-check"></i><b>1.2.4</b> Wide-form to Long-form Data:</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html"><i class="fa fa-check"></i><b>2</b> Session 2: Correlation and Regression</a></li>
+<li class="chapter" data-level="2" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html"><i class="fa fa-check"></i><b>2</b> Session 2: Correlation and Regression</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#code-used-in-this-session-1"><i class="fa fa-check"></i><b>2.1</b> Code Used in this Session:</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> SETTING UP</a></li>
+<li class="chapter" data-level="2.1.2" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#running-the-descriptive-statistics"><i class="fa fa-check"></i><b>2.1.2</b> RUNNING THE DESCRIPTIVE STATISTICS</a></li>
+<li class="chapter" data-level="2.1.3" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#creating-scatterplots"><i class="fa fa-check"></i><b>2.1.3</b> CREATING SCATTERPLOTS</a></li>
+<li class="chapter" data-level="2.1.4" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#running-pearsons-correlations"><i class="fa fa-check"></i><b>2.1.4</b> RUNNING PEARSON’S CORRELATIONS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#running-partial-correlations"><i class="fa fa-check"></i><b>2.1.5</b> RUNNING PARTIAL CORRELATIONS</a></li>
+<li class="chapter" data-level="2.1.6" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#comparing-two-correlations"><i class="fa fa-check"></i><b>2.1.6</b> COMPARING TWO CORRELATIONS</a></li>
+<li class="chapter" data-level="2.1.7" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#multiple-regression-with-continuous-predictor-variables"><i class="fa fa-check"></i><b>2.1.7</b> MULTIPLE REGRESSION WITH CONTINUOUS PREDICTOR VARIABLES</a></li>
+<li class="chapter" data-level="2.1.8" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#hierarchical-regression"><i class="fa fa-check"></i><b>2.1.8</b> HIERARCHICAL REGRESSION</a></li>
+<li class="chapter" data-level="2.1.9" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#multiple-regression-with-continuous-and-binary-predictors"><i class="fa fa-check"></i><b>2.1.9</b> MULTIPLE REGRESSION WITH CONTINUOUS AND BINARY PREDICTORS</a></li>
+<li class="chapter" data-level="2.1.10" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#multiple-regression-with-interactive-predictors"><i class="fa fa-check"></i><b>2.1.10</b> MULTIPLE REGRESSION WITH INTERACTIVE PREDICTORS</a></li>
+<li class="chapter" data-level="2.1.11" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#assumptions-of-multiple-regression"><i class="fa fa-check"></i><b>2.1.11</b> ASSUMPTIONS OF MULTIPLE REGRESSION</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="session-3-t-tests-and-anovas.html"><a href="session-3-t-tests-and-anovas.html"><i class="fa fa-check"></i><b>3</b> Session 3: t-Tests and ANOVAs</a></li>
 </ul>
 
@@ -171,6 +187,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">1</span> Session 1: Starting with R<a href="session-1-starting-with-r.html#session-1-starting-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="download-slides-and-data-files" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Download Slides and Data Files<a href="session-1-starting-with-r.html#download-slides-and-data-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Install R and RStudio <a href="https://posit.co/download/rstudio-desktop/">Here</a></p>
 <p>Slides: <a href="downloads/startr.pdf">here</a>.</p>
 <p>Data file: height.csv <a href="downloads/height.csv">here</a>.</p>
 <p>Data file sleep.csv <a href="downloads/sleep.csv">here</a>.</p>
@@ -242,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>facet_wrap()</code></li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="session-1-starting-with-r.html#cb12-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> change, <span class="at">fill =</span> condition)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="session-1-starting-with-r.html#cb12-2" tabindex="-1"></a>      <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>)</span>
+<span id="cb12-2"><a href="session-1-starting-with-r.html#cb12-2" tabindex="-1"></a>      <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="session-1-starting-with-r.html#cb12-3" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span> condition)</span></code></pre></div>
 <p>Box Plot:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="session-1-starting-with-r.html#cb13-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> change)) <span class="sc">+</span></span>

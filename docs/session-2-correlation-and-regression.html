@@ -23,7 +23,7 @@
 <meta name="author" content="Luke Kendrick / Victoria Bourne" />
 
 
-<meta name="date" content="2025-07-14" />
+<meta name="date" content="2025-07-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +148,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2.4" data-path="session-1-starting-with-r.html"><a href="session-1-starting-with-r.html#wide-form-to-long-form-data"><i class="fa fa-check"></i><b>1.2.4</b> Wide-form to Long-form Data:</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html"><i class="fa fa-check"></i><b>2</b> Session 2: Correlation and Regression</a></li>
+<li class="chapter" data-level="2" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html"><i class="fa fa-check"></i><b>2</b> Session 2: Correlation and Regression</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#code-used-in-this-session-1"><i class="fa fa-check"></i><b>2.1</b> Code Used in this Session:</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> SETTING UP</a></li>
+<li class="chapter" data-level="2.1.2" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#running-the-descriptive-statistics"><i class="fa fa-check"></i><b>2.1.2</b> RUNNING THE DESCRIPTIVE STATISTICS</a></li>
+<li class="chapter" data-level="2.1.3" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#creating-scatterplots"><i class="fa fa-check"></i><b>2.1.3</b> CREATING SCATTERPLOTS</a></li>
+<li class="chapter" data-level="2.1.4" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#running-pearsons-correlations"><i class="fa fa-check"></i><b>2.1.4</b> RUNNING PEARSON’S CORRELATIONS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#running-partial-correlations"><i class="fa fa-check"></i><b>2.1.5</b> RUNNING PARTIAL CORRELATIONS</a></li>
+<li class="chapter" data-level="2.1.6" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#comparing-two-correlations"><i class="fa fa-check"></i><b>2.1.6</b> COMPARING TWO CORRELATIONS</a></li>
+<li class="chapter" data-level="2.1.7" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#multiple-regression-with-continuous-predictor-variables"><i class="fa fa-check"></i><b>2.1.7</b> MULTIPLE REGRESSION WITH CONTINUOUS PREDICTOR VARIABLES</a></li>
+<li class="chapter" data-level="2.1.8" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#hierarchical-regression"><i class="fa fa-check"></i><b>2.1.8</b> HIERARCHICAL REGRESSION</a></li>
+<li class="chapter" data-level="2.1.9" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#multiple-regression-with-continuous-and-binary-predictors"><i class="fa fa-check"></i><b>2.1.9</b> MULTIPLE REGRESSION WITH CONTINUOUS AND BINARY PREDICTORS</a></li>
+<li class="chapter" data-level="2.1.10" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#multiple-regression-with-interactive-predictors"><i class="fa fa-check"></i><b>2.1.10</b> MULTIPLE REGRESSION WITH INTERACTIVE PREDICTORS</a></li>
+<li class="chapter" data-level="2.1.11" data-path="session-2-correlation-and-regression.html"><a href="session-2-correlation-and-regression.html#assumptions-of-multiple-regression"><i class="fa fa-check"></i><b>2.1.11</b> ASSUMPTIONS OF MULTIPLE REGRESSION</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="session-3-t-tests-and-anovas.html"><a href="session-3-t-tests-and-anovas.html"><i class="fa fa-check"></i><b>3</b> Session 3: t-Tests and ANOVAs</a></li>
 </ul>
 
@@ -169,7 +185,484 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="session-2-correlation-and-regression" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">2</span> Session 2: Correlation and Regression<a href="session-2-correlation-and-regression.html#session-2-correlation-and-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Slides: <a href="downloads/R_staff_regression.pdf">here</a>.</p>
+<p>Lecture data file <a href="downloads/Lecture_data_R_sat_life.csv">here</a></p>
+<p>Workshop data file: <a href="downloads/WS_data_R_optimism.csv">here</a>.</p>
+<div id="code-used-in-this-session-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Code Used in this Session:<a href="session-2-correlation-and-regression.html#code-used-in-this-session-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="setting-up" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> SETTING UP<a href="session-2-correlation-and-regression.html#setting-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="session-2-correlation-and-regression.html#cb16-1" tabindex="-1"></a><span class="co"># Before doing any analyses, you need to get everything set up and ready...</span></span>
+<span id="cb16-2"><a href="session-2-correlation-and-regression.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="session-2-correlation-and-regression.html#cb16-3" tabindex="-1"></a><span class="co"># Set the working directory -WD- so R knows where the data lives. Do this by going Session &gt; Set working directory &gt; Choose directory</span></span>
+<span id="cb16-4"><a href="session-2-correlation-and-regression.html#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="session-2-correlation-and-regression.html#cb16-5" tabindex="-1"></a><span class="co"># You can check the working directory...</span></span>
+<span id="cb16-6"><a href="session-2-correlation-and-regression.html#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="session-2-correlation-and-regression.html#cb16-7" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb16-8"><a href="session-2-correlation-and-regression.html#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="session-2-correlation-and-regression.html#cb16-9" tabindex="-1"></a><span class="co">#Before doing anything, need to make sure the right packages are installed and open. We will use all of these......</span></span>
+<span id="cb16-10"><a href="session-2-correlation-and-regression.html#cb16-10" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="session-2-correlation-and-regression.html#cb16-11" tabindex="-1"></a><span class="fu">install.packages</span>(tidyverse)</span>
+<span id="cb16-12"><a href="session-2-correlation-and-regression.html#cb16-12" tabindex="-1"></a><span class="fu">install.packages</span>(correlation)</span>
+<span id="cb16-13"><a href="session-2-correlation-and-regression.html#cb16-13" tabindex="-1"></a><span class="fu">install.packages</span>(gridExtra)</span>
+<span id="cb16-14"><a href="session-2-correlation-and-regression.html#cb16-14" tabindex="-1"></a><span class="fu">install.packages</span>(ppcor)</span>
+<span id="cb16-15"><a href="session-2-correlation-and-regression.html#cb16-15" tabindex="-1"></a><span class="fu">install.packages</span>(cocor)</span>
+<span id="cb16-16"><a href="session-2-correlation-and-regression.html#cb16-16" tabindex="-1"></a><span class="fu">install.packages</span>(car)</span>
+<span id="cb16-17"><a href="session-2-correlation-and-regression.html#cb16-17" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="session-2-correlation-and-regression.html#cb16-18" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-19"><a href="session-2-correlation-and-regression.html#cb16-19" tabindex="-1"></a><span class="fu">library</span>(correlation)</span>
+<span id="cb16-20"><a href="session-2-correlation-and-regression.html#cb16-20" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb16-21"><a href="session-2-correlation-and-regression.html#cb16-21" tabindex="-1"></a><span class="fu">library</span>(ppcor)</span>
+<span id="cb16-22"><a href="session-2-correlation-and-regression.html#cb16-22" tabindex="-1"></a><span class="fu">library</span>(cocor)</span>
+<span id="cb16-23"><a href="session-2-correlation-and-regression.html#cb16-23" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<p>Now get R to open our dataset:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="session-2-correlation-and-regression.html#cb17-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Lecture_data_R_sat_life.csv&quot;</span>)</span></code></pre></div>
+<p>Check data:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="session-2-correlation-and-regression.html#cb18-1" tabindex="-1"></a><span class="co"># To check the data have opened ok, you can view the data...</span></span>
+<span id="cb18-2"><a href="session-2-correlation-and-regression.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="session-2-correlation-and-regression.html#cb18-3" tabindex="-1"></a><span class="fu">view</span>(mydata)</span>
+<span id="cb18-4"><a href="session-2-correlation-and-regression.html#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="session-2-correlation-and-regression.html#cb18-5" tabindex="-1"></a><span class="co"># You can also check the number of participants (obs) and the number of variables in the &quot;Environment&quot; tab.</span></span>
+<span id="cb18-6"><a href="session-2-correlation-and-regression.html#cb18-6" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="session-2-correlation-and-regression.html#cb18-7" tabindex="-1"></a><span class="co"># Next, we need to tell R which variables are continuous (as.numeric) and which are categorical (as.factor).</span></span>
+<span id="cb18-8"><a href="session-2-correlation-and-regression.html#cb18-8" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="session-2-correlation-and-regression.html#cb18-9" tabindex="-1"></a><span class="co"># You can check the names of the variables with this...</span></span>
+<span id="cb18-10"><a href="session-2-correlation-and-regression.html#cb18-10" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="session-2-correlation-and-regression.html#cb18-11" tabindex="-1"></a><span class="fu">names</span>(mydata)</span></code></pre></div>
+<p>If necessary:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="session-2-correlation-and-regression.html#cb19-1" tabindex="-1"></a>mydata<span class="sc">$</span>p_num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mydata<span class="sc">$</span>p_num)</span>
+<span id="cb19-2"><a href="session-2-correlation-and-regression.html#cb19-2" tabindex="-1"></a>mydata<span class="sc">$</span>sat_life <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mydata<span class="sc">$</span>sat_life)</span>
+<span id="cb19-3"><a href="session-2-correlation-and-regression.html#cb19-3" tabindex="-1"></a>mydata<span class="sc">$</span>psych_wellbeing <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mydata<span class="sc">$</span>psych_wellbeing)</span>
+<span id="cb19-4"><a href="session-2-correlation-and-regression.html#cb19-4" tabindex="-1"></a>mydata<span class="sc">$</span>physical_wellbeing <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mydata<span class="sc">$</span>physical_wellbeing)</span>
+<span id="cb19-5"><a href="session-2-correlation-and-regression.html#cb19-5" tabindex="-1"></a>mydata<span class="sc">$</span>relationship_wellbeing <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mydata<span class="sc">$</span>relationship_wellbeing)</span>
+<span id="cb19-6"><a href="session-2-correlation-and-regression.html#cb19-6" tabindex="-1"></a>mydata<span class="sc">$</span>neg_life_experiences <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mydata<span class="sc">$</span>neg_life_experiences)</span>
+<span id="cb19-7"><a href="session-2-correlation-and-regression.html#cb19-7" tabindex="-1"></a>mydata<span class="sc">$</span>occ_status <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata<span class="sc">$</span>occ_status)</span>
+<span id="cb19-8"><a href="session-2-correlation-and-regression.html#cb19-8" tabindex="-1"></a>mydata<span class="sc">$</span>relationship_status <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata<span class="sc">$</span>relationship_status)</span>
+<span id="cb19-9"><a href="session-2-correlation-and-regression.html#cb19-9" tabindex="-1"></a>mydata<span class="sc">$</span>home_location <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata<span class="sc">$</span>home_location)</span>
+<span id="cb19-10"><a href="session-2-correlation-and-regression.html#cb19-10" tabindex="-1"></a>mydata<span class="sc">$</span>years_edu <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mydata<span class="sc">$</span>years_edu)</span></code></pre></div>
+</div>
+<div id="running-the-descriptive-statistics" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> RUNNING THE DESCRIPTIVE STATISTICS<a href="session-2-correlation-and-regression.html#running-the-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="session-2-correlation-and-regression.html#cb20-1" tabindex="-1"></a><span class="co"># Before getting into correlations, we might want a summary of our variables. For the continuous variables, we get descriptives. For the categorical/binary variables, we get frequencies.</span></span>
+<span id="cb20-2"><a href="session-2-correlation-and-regression.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="session-2-correlation-and-regression.html#cb20-3" tabindex="-1"></a><span class="fu">summary</span>(mydata)</span>
+<span id="cb20-4"><a href="session-2-correlation-and-regression.html#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="session-2-correlation-and-regression.html#cb20-5" tabindex="-1"></a><span class="co"># If we want to see the descriptives split for different groups, for example, we want to see the descriptives for satisfaction with life for occupational status separately..</span></span>
+<span id="cb20-6"><a href="session-2-correlation-and-regression.html#cb20-6" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="session-2-correlation-and-regression.html#cb20-7" tabindex="-1"></a>descriptives_bygroup <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span> <span class="co"># Tell R which data set to use.  %&gt;% means &quot;and then&quot; so tells R to move on and do something else</span></span>
+<span id="cb20-8"><a href="session-2-correlation-and-regression.html#cb20-8" tabindex="-1"></a>  <span class="fu">group_by</span>(occ_status) <span class="sc">%&gt;%</span> <span class="co"># group_by is telling R to split the data file - put the variable to split by in brackets</span></span>
+<span id="cb20-9"><a href="session-2-correlation-and-regression.html#cb20-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_sat_life =</span> <span class="fu">mean</span>(sat_life), <span class="at">sd_sat_life =</span> <span class="fu">sd</span>(sat_life)) <span class="co"># Ask for the mean and standard deviation. statistic_calculated = statistic(variable  )</span></span>
+<span id="cb20-10"><a href="session-2-correlation-and-regression.html#cb20-10" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="session-2-correlation-and-regression.html#cb20-11" tabindex="-1"></a><span class="co"># You then need R to &quot;print&quot; - or display - the calculated descriptives in the console window.</span></span>
+<span id="cb20-12"><a href="session-2-correlation-and-regression.html#cb20-12" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="session-2-correlation-and-regression.html#cb20-13" tabindex="-1"></a><span class="fu">print</span>(descriptives_bygroup)</span></code></pre></div>
+</div>
+<div id="creating-scatterplots" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> CREATING SCATTERPLOTS<a href="session-2-correlation-and-regression.html#creating-scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="session-2-correlation-and-regression.html#cb21-1" tabindex="-1"></a><span class="co"># First, let&#39;s graph the correlations between &quot;satisfaction&quot; with life, and the four other continuous variables. You won&#39;t see them until after you make them and then ask R to display them. We will make four scatterplots...</span></span>
+<span id="cb21-2"><a href="session-2-correlation-and-regression.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="session-2-correlation-and-regression.html#cb21-3" tabindex="-1"></a><span class="co"># Satisfaction with life and psychological wellbeing</span></span>
+<span id="cb21-4"><a href="session-2-correlation-and-regression.html#cb21-4" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="session-2-correlation-and-regression.html#cb21-5" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> psych_wellbeing, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="session-2-correlation-and-regression.html#cb21-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-7"><a href="session-2-correlation-and-regression.html#cb21-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb21-8"><a href="session-2-correlation-and-regression.html#cb21-8" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="session-2-correlation-and-regression.html#cb21-9" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb21-10"><a href="session-2-correlation-and-regression.html#cb21-10" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="session-2-correlation-and-regression.html#cb21-11" tabindex="-1"></a><span class="co"># Satisfaction with life and physical wellbeing</span></span>
+<span id="cb21-12"><a href="session-2-correlation-and-regression.html#cb21-12" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="session-2-correlation-and-regression.html#cb21-13" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> physical_wellbeing, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="session-2-correlation-and-regression.html#cb21-14" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-15"><a href="session-2-correlation-and-regression.html#cb21-15" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb21-16"><a href="session-2-correlation-and-regression.html#cb21-16" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="session-2-correlation-and-regression.html#cb21-17" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb21-18"><a href="session-2-correlation-and-regression.html#cb21-18" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="session-2-correlation-and-regression.html#cb21-19" tabindex="-1"></a><span class="co"># Satisfaction with life and relationship wellbeing</span></span>
+<span id="cb21-20"><a href="session-2-correlation-and-regression.html#cb21-20" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="session-2-correlation-and-regression.html#cb21-21" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> relationship_wellbeing, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb21-22"><a href="session-2-correlation-and-regression.html#cb21-22" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-23"><a href="session-2-correlation-and-regression.html#cb21-23" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb21-24"><a href="session-2-correlation-and-regression.html#cb21-24" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb21-25"><a href="session-2-correlation-and-regression.html#cb21-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb21-26"><a href="session-2-correlation-and-regression.html#cb21-26" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="session-2-correlation-and-regression.html#cb21-27" tabindex="-1"></a><span class="co"># Satisfaction with life and negative life events</span></span>
+<span id="cb21-28"><a href="session-2-correlation-and-regression.html#cb21-28" tabindex="-1"></a></span>
+<span id="cb21-29"><a href="session-2-correlation-and-regression.html#cb21-29" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> neg_life_experiences, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb21-30"><a href="session-2-correlation-and-regression.html#cb21-30" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-31"><a href="session-2-correlation-and-regression.html#cb21-31" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb21-32"><a href="session-2-correlation-and-regression.html#cb21-32" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb21-33"><a href="session-2-correlation-and-regression.html#cb21-33" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb21-34"><a href="session-2-correlation-and-regression.html#cb21-34" tabindex="-1"></a></span>
+<span id="cb21-35"><a href="session-2-correlation-and-regression.html#cb21-35" tabindex="-1"></a><span class="co"># To see what the plots look like, we need to arrange them in the &quot;Plot&quot; window. Make sure &quot;gridextra&quot; is ticked in the &quot;Packages&quot; window</span></span>
+<span id="cb21-36"><a href="session-2-correlation-and-regression.html#cb21-36" tabindex="-1"></a></span>
+<span id="cb21-37"><a href="session-2-correlation-and-regression.html#cb21-37" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, plot3, plot4, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)  </span>
+<span id="cb21-38"><a href="session-2-correlation-and-regression.html#cb21-38" tabindex="-1"></a></span>
+<span id="cb21-39"><a href="session-2-correlation-and-regression.html#cb21-39" tabindex="-1"></a><span class="co"># ncol = 2 tells R to put two next to each other, nrow = 2 tells R to put one above the other</span></span>
+<span id="cb21-40"><a href="session-2-correlation-and-regression.html#cb21-40" tabindex="-1"></a></span>
+<span id="cb21-41"><a href="session-2-correlation-and-regression.html#cb21-41" tabindex="-1"></a><span class="co"># To just print one of the plots...</span></span>
+<span id="cb21-42"><a href="session-2-correlation-and-regression.html#cb21-42" tabindex="-1"></a></span>
+<span id="cb21-43"><a href="session-2-correlation-and-regression.html#cb21-43" tabindex="-1"></a><span class="fu">print</span>(plot1)</span></code></pre></div>
+</div>
+<div id="running-pearsons-correlations" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> RUNNING PEARSON’S CORRELATIONS<a href="session-2-correlation-and-regression.html#running-pearsons-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="session-2-correlation-and-regression.html#cb22-1" tabindex="-1"></a><span class="co"># Now we can look at the correlations between these four continuous variables - but we want to mainly focus on the correlations with satisfaction with life - our main variable of interest.</span></span>
+<span id="cb22-2"><a href="session-2-correlation-and-regression.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="session-2-correlation-and-regression.html#cb22-3" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="session-2-correlation-and-regression.html#cb22-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sat_life, psych_wellbeing, physical_wellbeing, relationship_wellbeing, neg_life_experiences) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="session-2-correlation-and-regression.html#cb22-5" tabindex="-1"></a>  <span class="fu">correlation</span>(<span class="at">p_adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb22-6"><a href="session-2-correlation-and-regression.html#cb22-6" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="session-2-correlation-and-regression.html#cb22-7" tabindex="-1"></a><span class="co"># In addition to giving you the r and p values, it gives the N, so check that this is correct. To write up the correlation, remember that df = N-2.</span></span></code></pre></div>
+</div>
+<div id="running-partial-correlations" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> RUNNING PARTIAL CORRELATIONS<a href="session-2-correlation-and-regression.html#running-partial-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="session-2-correlation-and-regression.html#cb23-1" tabindex="-1"></a><span class="co"># Next, let&#39;s look at partial correlations, so the four main correlations of interest we just ran, but now controlling for years of education.</span></span>
+<span id="cb23-2"><a href="session-2-correlation-and-regression.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="session-2-correlation-and-regression.html#cb23-3" tabindex="-1"></a><span class="co"># You need to have one set of code for each partial correlation, and make sure &quot;ppcor&quot; is ticked in the &quot;Packages&quot; window.</span></span>
+<span id="cb23-4"><a href="session-2-correlation-and-regression.html#cb23-4" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="session-2-correlation-and-regression.html#cb23-5" tabindex="-1"></a><span class="fu">pcor.test</span>(mydata<span class="sc">$</span>sat_life, mydata<span class="sc">$</span>psych_wellbeing,</span>
+<span id="cb23-6"><a href="session-2-correlation-and-regression.html#cb23-6" tabindex="-1"></a>          mydata<span class="sc">$</span>years_edu,</span>
+<span id="cb23-7"><a href="session-2-correlation-and-regression.html#cb23-7" tabindex="-1"></a>          <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb23-8"><a href="session-2-correlation-and-regression.html#cb23-8" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="session-2-correlation-and-regression.html#cb23-9" tabindex="-1"></a><span class="fu">pcor.test</span>(mydata<span class="sc">$</span>sat_life, mydata<span class="sc">$</span>physical_wellbeing,</span>
+<span id="cb23-10"><a href="session-2-correlation-and-regression.html#cb23-10" tabindex="-1"></a>          mydata<span class="sc">$</span>years_edu,</span>
+<span id="cb23-11"><a href="session-2-correlation-and-regression.html#cb23-11" tabindex="-1"></a>          <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb23-12"><a href="session-2-correlation-and-regression.html#cb23-12" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="session-2-correlation-and-regression.html#cb23-13" tabindex="-1"></a><span class="fu">pcor.test</span>(mydata<span class="sc">$</span>sat_life, mydata<span class="sc">$</span>relationship_wellbeing,</span>
+<span id="cb23-14"><a href="session-2-correlation-and-regression.html#cb23-14" tabindex="-1"></a>          mydata<span class="sc">$</span>years_edu,</span>
+<span id="cb23-15"><a href="session-2-correlation-and-regression.html#cb23-15" tabindex="-1"></a>          <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb23-16"><a href="session-2-correlation-and-regression.html#cb23-16" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="session-2-correlation-and-regression.html#cb23-17" tabindex="-1"></a><span class="fu">pcor.test</span>(mydata<span class="sc">$</span>sat_life, mydata<span class="sc">$</span>neg_life_experiences,</span>
+<span id="cb23-18"><a href="session-2-correlation-and-regression.html#cb23-18" tabindex="-1"></a>          mydata<span class="sc">$</span>years_edu,</span>
+<span id="cb23-19"><a href="session-2-correlation-and-regression.html#cb23-19" tabindex="-1"></a>          <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+</div>
+<div id="comparing-two-correlations" class="section level3 hasAnchor" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> COMPARING TWO CORRELATIONS<a href="session-2-correlation-and-regression.html#comparing-two-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="session-2-correlation-and-regression.html#cb24-1" tabindex="-1"></a><span class="co"># Final thing is comparing correlations across different groups. For example, is the correlation between satisfaction with life and negative life experiences different when comparing people who are single or in a relationship?</span></span>
+<span id="cb24-2"><a href="session-2-correlation-and-regression.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="session-2-correlation-and-regression.html#cb24-3" tabindex="-1"></a><span class="co"># First, we need to tell R which subgroups within our dataset we want to look at - so identify 0 and 1 from the &quot;relationship&quot; variable, and name each one.</span></span>
+<span id="cb24-4"><a href="session-2-correlation-and-regression.html#cb24-4" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="session-2-correlation-and-regression.html#cb24-5" tabindex="-1"></a>single <span class="ot">&lt;-</span> mydata[mydata<span class="sc">$</span>relationship_status <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, ]</span>
+<span id="cb24-6"><a href="session-2-correlation-and-regression.html#cb24-6" tabindex="-1"></a>relationship <span class="ot">&lt;-</span> mydata[mydata<span class="sc">$</span>relationship_status <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, ]</span>
+<span id="cb24-7"><a href="session-2-correlation-and-regression.html#cb24-7" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="session-2-correlation-and-regression.html#cb24-8" tabindex="-1"></a><span class="co"># Now we run the two correlations - we need to tell R first which subgroup to use from the naming we just did, and which continuous variable to correlate.</span></span>
+<span id="cb24-9"><a href="session-2-correlation-and-regression.html#cb24-9" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="session-2-correlation-and-regression.html#cb24-10" tabindex="-1"></a><span class="fu">cor.test</span>(single<span class="sc">$</span>sat_life, single<span class="sc">$</span>neg_life_experiences,</span>
+<span id="cb24-11"><a href="session-2-correlation-and-regression.html#cb24-11" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb24-12"><a href="session-2-correlation-and-regression.html#cb24-12" tabindex="-1"></a><span class="fu">cor.test</span>(relationship<span class="sc">$</span>sat_life, relationship<span class="sc">$</span>neg_life_experiences,</span>
+<span id="cb24-13"><a href="session-2-correlation-and-regression.html#cb24-13" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb24-14"><a href="session-2-correlation-and-regression.html#cb24-14" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="session-2-correlation-and-regression.html#cb24-15" tabindex="-1"></a><span class="co"># To compare the correlations statistically, we need the N and the r for each group. The r value is the final value in the output we just created - the final line, under corr.</span></span>
+<span id="cb24-16"><a href="session-2-correlation-and-regression.html#cb24-16" tabindex="-1"></a><span class="co"># To get the N for each group, we ran the &quot;summary&quot; earlier, but you can do it again to save scrolling. </span></span>
+<span id="cb24-17"><a href="session-2-correlation-and-regression.html#cb24-17" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="session-2-correlation-and-regression.html#cb24-18" tabindex="-1"></a><span class="fu">summary</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="session-2-correlation-and-regression.html#cb25-1" tabindex="-1"></a><span class="co"># Now we can statistically compare our r values. Make a note of which group you consider to be &quot;1&quot; and which is &quot;2&quot;. For this, it will be 1 is single and 2 is in a relationship.</span></span>
+<span id="cb25-2"><a href="session-2-correlation-and-regression.html#cb25-2" tabindex="-1"></a><span class="co"># First, make sure &quot;cocor&quot; is ticked in the &quot;Packages&quot; tab.</span></span>
+<span id="cb25-3"><a href="session-2-correlation-and-regression.html#cb25-3" tabindex="-1"></a><span class="co"># r1 is the first r-value, in this case -0.5218863 </span></span>
+<span id="cb25-4"><a href="session-2-correlation-and-regression.html#cb25-4" tabindex="-1"></a><span class="co"># r2 is the second r-value, in this case -0.1741089</span></span>
+<span id="cb25-5"><a href="session-2-correlation-and-regression.html#cb25-5" tabindex="-1"></a><span class="co"># n1 is the first sample size, in this case 92</span></span>
+<span id="cb25-6"><a href="session-2-correlation-and-regression.html#cb25-6" tabindex="-1"></a><span class="co"># n2 is the second sample size, in this case 108</span></span>
+<span id="cb25-7"><a href="session-2-correlation-and-regression.html#cb25-7" tabindex="-1"></a><span class="co"># the code looks like this, so just replace the values as needed... cocor.indep.groups(r1, r2, n1, n2)</span></span>
+<span id="cb25-8"><a href="session-2-correlation-and-regression.html#cb25-8" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="session-2-correlation-and-regression.html#cb25-9" tabindex="-1"></a><span class="fu">cocor.indep.groups</span>(<span class="sc">-</span><span class="fl">0.5218863</span>, <span class="sc">-</span><span class="fl">0.1741089</span>, <span class="dv">92</span>, <span class="dv">108</span>)</span>
+<span id="cb25-10"><a href="session-2-correlation-and-regression.html#cb25-10" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="session-2-correlation-and-regression.html#cb25-11" tabindex="-1"></a><span class="co"># Final thing to do - graph these two correlations on the same plot to aid interpretation.</span></span>
+<span id="cb25-12"><a href="session-2-correlation-and-regression.html#cb25-12" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="session-2-correlation-and-regression.html#cb25-13" tabindex="-1"></a>plot_cc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> neg_life_experiences, <span class="at">y =</span> sat_life, <span class="at">colour =</span> relationship_status)) <span class="sc">+</span></span>
+<span id="cb25-14"><a href="session-2-correlation-and-regression.html#cb25-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> relationship_status)) <span class="sc">+</span></span>
+<span id="cb25-15"><a href="session-2-correlation-and-regression.html#cb25-15" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> relationship_status), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb25-16"><a href="session-2-correlation-and-regression.html#cb25-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Negative life experiences vs Satisfaction with life by Relationship status&quot;</span>,</span>
+<span id="cb25-17"><a href="session-2-correlation-and-regression.html#cb25-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Negative life experiences&quot;</span>,</span>
+<span id="cb25-18"><a href="session-2-correlation-and-regression.html#cb25-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Satisfaction with life&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-19"><a href="session-2-correlation-and-regression.html#cb25-19" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb25-20"><a href="session-2-correlation-and-regression.html#cb25-20" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;black &quot;</span>)) <span class="sc">+</span></span>
+<span id="cb25-21"><a href="session-2-correlation-and-regression.html#cb25-21" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;solid&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;dashed&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb25-22"><a href="session-2-correlation-and-regression.html#cb25-22" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="dv">16</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb25-23"><a href="session-2-correlation-and-regression.html#cb25-23" tabindex="-1"></a></span>
+<span id="cb25-24"><a href="session-2-correlation-and-regression.html#cb25-24" tabindex="-1"></a></span>
+<span id="cb25-25"><a href="session-2-correlation-and-regression.html#cb25-25" tabindex="-1"></a><span class="fu">print</span>(plot_cc)</span></code></pre></div>
+</div>
+<div id="multiple-regression-with-continuous-predictor-variables" class="section level3 hasAnchor" number="2.1.7">
+<h3><span class="header-section-number">2.1.7</span> MULTIPLE REGRESSION WITH CONTINUOUS PREDICTOR VARIABLES<a href="session-2-correlation-and-regression.html#multiple-regression-with-continuous-predictor-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="session-2-correlation-and-regression.html#cb26-1" tabindex="-1"></a><span class="co"># Now, let&#39;s run a multiple regression.</span></span>
+<span id="cb26-2"><a href="session-2-correlation-and-regression.html#cb26-2" tabindex="-1"></a><span class="co"># We have SWL as the outcome variable that we want to predict</span></span>
+<span id="cb26-3"><a href="session-2-correlation-and-regression.html#cb26-3" tabindex="-1"></a><span class="co"># Then the three wellbeing measures and the number of negative life experiences giving us four continuous predictor variable.</span></span>
+<span id="cb26-4"><a href="session-2-correlation-and-regression.html#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="session-2-correlation-and-regression.html#cb26-5" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sat_life <span class="sc">~</span> psych_wellbeing <span class="sc">+</span> physical_wellbeing <span class="sc">+</span> relationship_wellbeing <span class="sc">+</span> neg_life_experiences, <span class="at">data =</span> mydata)</span>
+<span id="cb26-6"><a href="session-2-correlation-and-regression.html#cb26-6" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="session-2-correlation-and-regression.html#cb27-1" tabindex="-1"></a><span class="co"># We then want to create scatterplots to graphically represent any significant predictors (so three)</span></span>
+<span id="cb27-2"><a href="session-2-correlation-and-regression.html#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="session-2-correlation-and-regression.html#cb27-3" tabindex="-1"></a><span class="co"># Satisfaction with life and psychological wellbeing</span></span>
+<span id="cb27-4"><a href="session-2-correlation-and-regression.html#cb27-4" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="session-2-correlation-and-regression.html#cb27-5" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> psych_wellbeing, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="session-2-correlation-and-regression.html#cb27-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-7"><a href="session-2-correlation-and-regression.html#cb27-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb27-8"><a href="session-2-correlation-and-regression.html#cb27-8" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb27-9"><a href="session-2-correlation-and-regression.html#cb27-9" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb27-10"><a href="session-2-correlation-and-regression.html#cb27-10" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="session-2-correlation-and-regression.html#cb27-11" tabindex="-1"></a><span class="co"># Satisfaction with life and relationship wellbeing</span></span>
+<span id="cb27-12"><a href="session-2-correlation-and-regression.html#cb27-12" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="session-2-correlation-and-regression.html#cb27-13" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> relationship_wellbeing, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb27-14"><a href="session-2-correlation-and-regression.html#cb27-14" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-15"><a href="session-2-correlation-and-regression.html#cb27-15" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb27-16"><a href="session-2-correlation-and-regression.html#cb27-16" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="session-2-correlation-and-regression.html#cb27-17" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb27-18"><a href="session-2-correlation-and-regression.html#cb27-18" tabindex="-1"></a></span>
+<span id="cb27-19"><a href="session-2-correlation-and-regression.html#cb27-19" tabindex="-1"></a><span class="co"># Satisfaction with life and negative life events</span></span>
+<span id="cb27-20"><a href="session-2-correlation-and-regression.html#cb27-20" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="session-2-correlation-and-regression.html#cb27-21" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> neg_life_experiences, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb27-22"><a href="session-2-correlation-and-regression.html#cb27-22" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-23"><a href="session-2-correlation-and-regression.html#cb27-23" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb27-24"><a href="session-2-correlation-and-regression.html#cb27-24" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb27-25"><a href="session-2-correlation-and-regression.html#cb27-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb27-26"><a href="session-2-correlation-and-regression.html#cb27-26" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="session-2-correlation-and-regression.html#cb27-27" tabindex="-1"></a><span class="co"># To see what the plots look like, we need to arrange them in the &quot;Plot&quot; window. Make sure &quot;gridextra&quot; is ticked in the &quot;Packages&quot; window</span></span>
+<span id="cb27-28"><a href="session-2-correlation-and-regression.html#cb27-28" tabindex="-1"></a></span>
+<span id="cb27-29"><a href="session-2-correlation-and-regression.html#cb27-29" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, plot3, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>)  </span>
+<span id="cb27-30"><a href="session-2-correlation-and-regression.html#cb27-30" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="session-2-correlation-and-regression.html#cb27-31" tabindex="-1"></a><span class="co"># ncol = 3 tells R to put two next to each other, nrow = 1 tells R to put one above the other</span></span></code></pre></div>
+</div>
+<div id="hierarchical-regression" class="section level3 hasAnchor" number="2.1.8">
+<h3><span class="header-section-number">2.1.8</span> HIERARCHICAL REGRESSION<a href="session-2-correlation-and-regression.html#hierarchical-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="session-2-correlation-and-regression.html#cb28-1" tabindex="-1"></a><span class="co"># Now, let&#39;s move on to hierarchical regression - exactly what we just did, but adding years of education as a control variable.</span></span>
+<span id="cb28-2"><a href="session-2-correlation-and-regression.html#cb28-2" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="session-2-correlation-and-regression.html#cb28-3" tabindex="-1"></a><span class="co"># First, let&#39;s see if the control variable is significant by building model 1. Make sure it is called &quot;model 1&quot; and you need to run the summary to see the output.</span></span>
+<span id="cb28-4"><a href="session-2-correlation-and-regression.html#cb28-4" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="session-2-correlation-and-regression.html#cb28-5" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sat_life <span class="sc">~</span> years_edu, <span class="at">data =</span> mydata)</span>
+<span id="cb28-6"><a href="session-2-correlation-and-regression.html#cb28-6" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="session-2-correlation-and-regression.html#cb29-1" tabindex="-1"></a><span class="co"># Next, build our final model that has all the variables (control and predictor variables). This is &quot;model 2&quot;, and again, use the summary to see the output.</span></span>
+<span id="cb29-2"><a href="session-2-correlation-and-regression.html#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="session-2-correlation-and-regression.html#cb29-3" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sat_life <span class="sc">~</span> years_edu <span class="sc">+</span> psych_wellbeing <span class="sc">+</span> physical_wellbeing <span class="sc">+</span> relationship_wellbeing <span class="sc">+</span> neg_life_experiences, <span class="at">data =</span> mydata)</span>
+<span id="cb29-4"><a href="session-2-correlation-and-regression.html#cb29-4" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="session-2-correlation-and-regression.html#cb30-1" tabindex="-1"></a><span class="co"># Finally, we want to see if adding the predictor variables is significantly &quot;better&quot; than the control variable alone, this has two parts.</span></span>
+<span id="cb30-2"><a href="session-2-correlation-and-regression.html#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="session-2-correlation-and-regression.html#cb30-3" tabindex="-1"></a><span class="co"># First - how much does the variance explained (adjusted R sq) increase?</span></span>
+<span id="cb30-4"><a href="session-2-correlation-and-regression.html#cb30-4" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="session-2-correlation-and-regression.html#cb30-5" tabindex="-1"></a>r2_control <span class="ot">&lt;-</span> <span class="fu">summary</span>(model1)<span class="sc">$</span>adj.r.squared  <span class="co"># Adj Rsq of control model</span></span>
+<span id="cb30-6"><a href="session-2-correlation-and-regression.html#cb30-6" tabindex="-1"></a>r2_full <span class="ot">&lt;-</span> <span class="fu">summary</span>(model2)<span class="sc">$</span>adj.r.squared     <span class="co"># Adj Rsq of full model</span></span>
+<span id="cb30-7"><a href="session-2-correlation-and-regression.html#cb30-7" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="session-2-correlation-and-regression.html#cb30-8" tabindex="-1"></a>r2_change <span class="ot">&lt;-</span> r2_full <span class="sc">-</span> r2_control  </span>
+<span id="cb30-9"><a href="session-2-correlation-and-regression.html#cb30-9" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="session-2-correlation-and-regression.html#cb30-10" tabindex="-1"></a><span class="fu">print</span>(r2_change)  <span class="co"># Print the Adj Rsq change</span></span>
+<span id="cb30-11"><a href="session-2-correlation-and-regression.html#cb30-11" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="session-2-correlation-and-regression.html#cb30-12" tabindex="-1"></a><span class="co"># Does the model significantly improve?</span></span>
+<span id="cb30-13"><a href="session-2-correlation-and-regression.html#cb30-13" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="session-2-correlation-and-regression.html#cb30-14" tabindex="-1"></a><span class="fu">anova</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="session-2-correlation-and-regression.html#cb31-1" tabindex="-1"></a><span class="co"># We then want to create scatterplots to graphically represent any significant predictors (so two)</span></span>
+<span id="cb31-2"><a href="session-2-correlation-and-regression.html#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="session-2-correlation-and-regression.html#cb31-3" tabindex="-1"></a><span class="co"># Satisfaction with life and psychological wellbeing</span></span>
+<span id="cb31-4"><a href="session-2-correlation-and-regression.html#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="session-2-correlation-and-regression.html#cb31-5" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> psych_wellbeing, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="session-2-correlation-and-regression.html#cb31-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb31-7"><a href="session-2-correlation-and-regression.html#cb31-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb31-8"><a href="session-2-correlation-and-regression.html#cb31-8" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="session-2-correlation-and-regression.html#cb31-9" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb31-10"><a href="session-2-correlation-and-regression.html#cb31-10" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="session-2-correlation-and-regression.html#cb31-11" tabindex="-1"></a><span class="co"># Satisfaction with life and negative life events</span></span>
+<span id="cb31-12"><a href="session-2-correlation-and-regression.html#cb31-12" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="session-2-correlation-and-regression.html#cb31-13" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> neg_life_experiences, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb31-14"><a href="session-2-correlation-and-regression.html#cb31-14" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb31-15"><a href="session-2-correlation-and-regression.html#cb31-15" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb31-16"><a href="session-2-correlation-and-regression.html#cb31-16" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb31-17"><a href="session-2-correlation-and-regression.html#cb31-17" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb31-18"><a href="session-2-correlation-and-regression.html#cb31-18" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="session-2-correlation-and-regression.html#cb31-19" tabindex="-1"></a><span class="co"># To see what the plots look like, we need to arrange them in the &quot;Plot&quot; window. Make sure &quot;gridextra&quot; is ticked in the &quot;Packages&quot; window</span></span>
+<span id="cb31-20"><a href="session-2-correlation-and-regression.html#cb31-20" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="session-2-correlation-and-regression.html#cb31-21" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+</div>
+<div id="multiple-regression-with-continuous-and-binary-predictors" class="section level3 hasAnchor" number="2.1.9">
+<h3><span class="header-section-number">2.1.9</span> MULTIPLE REGRESSION WITH CONTINUOUS AND BINARY PREDICTORS<a href="session-2-correlation-and-regression.html#multiple-regression-with-continuous-and-binary-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="session-2-correlation-and-regression.html#cb32-1" tabindex="-1"></a><span class="co"># Now, let&#39;s run a multiple regression, but this time adding in the three new binary predictors</span></span>
+<span id="cb32-2"><a href="session-2-correlation-and-regression.html#cb32-2" tabindex="-1"></a><span class="co"># We have SWL as the outcome variable that we want to predict</span></span>
+<span id="cb32-3"><a href="session-2-correlation-and-regression.html#cb32-3" tabindex="-1"></a><span class="co"># Then four continuous predictors (the three wellbeing measures and the number of negative life experiences) and three binary (occupational status, relationship status, home location).</span></span>
+<span id="cb32-4"><a href="session-2-correlation-and-regression.html#cb32-4" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="session-2-correlation-and-regression.html#cb32-5" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sat_life <span class="sc">~</span> psych_wellbeing <span class="sc">+</span> physical_wellbeing <span class="sc">+</span> relationship_wellbeing <span class="sc">+</span> neg_life_experiences <span class="sc">+</span> occ_status <span class="sc">+</span> relationship_status <span class="sc">+</span> home_location, <span class="at">data =</span> mydata)</span>
+<span id="cb32-6"><a href="session-2-correlation-and-regression.html#cb32-6" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="session-2-correlation-and-regression.html#cb32-7" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="session-2-correlation-and-regression.html#cb33-1" tabindex="-1"></a><span class="co"># We then want to create scatterplots to show the significant continuous predictors and boxplots to show the significant binary predictors.</span></span>
+<span id="cb33-2"><a href="session-2-correlation-and-regression.html#cb33-2" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="session-2-correlation-and-regression.html#cb33-3" tabindex="-1"></a><span class="co"># First, build the two scatterplots (using the code from previous weeks)</span></span>
+<span id="cb33-4"><a href="session-2-correlation-and-regression.html#cb33-4" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="session-2-correlation-and-regression.html#cb33-5" tabindex="-1"></a><span class="co"># Satisfaction with life and psychological wellbeing</span></span>
+<span id="cb33-6"><a href="session-2-correlation-and-regression.html#cb33-6" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="session-2-correlation-and-regression.html#cb33-7" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> psych_wellbeing, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb33-8"><a href="session-2-correlation-and-regression.html#cb33-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-9"><a href="session-2-correlation-and-regression.html#cb33-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb33-10"><a href="session-2-correlation-and-regression.html#cb33-10" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb33-11"><a href="session-2-correlation-and-regression.html#cb33-11" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb33-12"><a href="session-2-correlation-and-regression.html#cb33-12" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="session-2-correlation-and-regression.html#cb33-13" tabindex="-1"></a><span class="co"># Satisfaction with life and negative life events</span></span>
+<span id="cb33-14"><a href="session-2-correlation-and-regression.html#cb33-14" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="session-2-correlation-and-regression.html#cb33-15" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> neg_life_experiences, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb33-16"><a href="session-2-correlation-and-regression.html#cb33-16" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-17"><a href="session-2-correlation-and-regression.html#cb33-17" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb33-18"><a href="session-2-correlation-and-regression.html#cb33-18" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb33-19"><a href="session-2-correlation-and-regression.html#cb33-19" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb33-20"><a href="session-2-correlation-and-regression.html#cb33-20" tabindex="-1"></a></span>
+<span id="cb33-21"><a href="session-2-correlation-and-regression.html#cb33-21" tabindex="-1"></a><span class="co"># To see what the scatterplots look like, we need to arrange them in the &quot;Plot&quot; window. Make sure &quot;gridextra&quot; is ticked in the &quot;Packages&quot; window</span></span>
+<span id="cb33-22"><a href="session-2-correlation-and-regression.html#cb33-22" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="session-2-correlation-and-regression.html#cb33-23" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">2</span>)  </span>
+<span id="cb33-24"><a href="session-2-correlation-and-regression.html#cb33-24" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="session-2-correlation-and-regression.html#cb33-25" tabindex="-1"></a><span class="co"># ncol = 2 tells R to put two next to each other, nrow = 1 tells R to have one &quot;row&quot; of graphs, so puts them next to each other.</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="session-2-correlation-and-regression.html#cb34-1" tabindex="-1"></a><span class="co"># Next, we want to create a boxplot for each significant binary predictor. We do this in exactly the same way as for graphing an independent t test, so you can go back to that lecture/workshop if needed.</span></span>
+<span id="cb34-2"><a href="session-2-correlation-and-regression.html#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="session-2-correlation-and-regression.html#cb34-3" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> occ_status, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="session-2-correlation-and-regression.html#cb34-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb34-5"><a href="session-2-correlation-and-regression.html#cb34-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Satisfaction with life by occupational status&quot;</span>,</span>
+<span id="cb34-6"><a href="session-2-correlation-and-regression.html#cb34-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Occupational status&quot;</span>,</span>
+<span id="cb34-7"><a href="session-2-correlation-and-regression.html#cb34-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean satisfaction with life score&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="session-2-correlation-and-regression.html#cb34-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb34-9"><a href="session-2-correlation-and-regression.html#cb34-9" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="session-2-correlation-and-regression.html#cb34-10" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> relationship_status, <span class="at">y =</span> sat_life)) <span class="sc">+</span></span>
+<span id="cb34-11"><a href="session-2-correlation-and-regression.html#cb34-11" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb34-12"><a href="session-2-correlation-and-regression.html#cb34-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Satisfaction with life by relationship status&quot;</span>,</span>
+<span id="cb34-13"><a href="session-2-correlation-and-regression.html#cb34-13" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Relationship status&quot;</span>,</span>
+<span id="cb34-14"><a href="session-2-correlation-and-regression.html#cb34-14" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean satisfaction with life score&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-15"><a href="session-2-correlation-and-regression.html#cb34-15" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="session-2-correlation-and-regression.html#cb35-1" tabindex="-1"></a><span class="co"># To interpret the binary predictors, you might also want to look at the descriptive variables for each group separately.</span></span>
+<span id="cb35-2"><a href="session-2-correlation-and-regression.html#cb35-2" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="session-2-correlation-and-regression.html#cb35-3" tabindex="-1"></a><span class="co"># First, looking by occupational status.</span></span>
+<span id="cb35-4"><a href="session-2-correlation-and-regression.html#cb35-4" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="session-2-correlation-and-regression.html#cb35-5" tabindex="-1"></a>descriptives_bygroup <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span> <span class="co"># Tell R which data set to use.  %&gt;% means &quot;and then&quot; so tells R to move on and do something else</span></span>
+<span id="cb35-6"><a href="session-2-correlation-and-regression.html#cb35-6" tabindex="-1"></a>  <span class="fu">group_by</span>(occ_status) <span class="sc">%&gt;%</span> <span class="co"># group_by is telling R to split the data file - put the variable to split by in brackets</span></span>
+<span id="cb35-7"><a href="session-2-correlation-and-regression.html#cb35-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_sat_life =</span> <span class="fu">mean</span>(sat_life), <span class="at">sd_sat_life =</span> <span class="fu">sd</span>(sat_life)) <span class="co"># Ask for the mean and standard deviation. statistic_calculated = statistic(variable  )</span></span>
+<span id="cb35-8"><a href="session-2-correlation-and-regression.html#cb35-8" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="session-2-correlation-and-regression.html#cb35-9" tabindex="-1"></a><span class="co"># You then need R to &quot;print&quot; - or display - the calculated descriptives in the console window.</span></span>
+<span id="cb35-10"><a href="session-2-correlation-and-regression.html#cb35-10" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="session-2-correlation-and-regression.html#cb35-11" tabindex="-1"></a><span class="fu">print</span>(descriptives_bygroup)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="session-2-correlation-and-regression.html#cb36-1" tabindex="-1"></a><span class="co"># Next,repeat this, but looking by home location.</span></span>
+<span id="cb36-2"><a href="session-2-correlation-and-regression.html#cb36-2" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="session-2-correlation-and-regression.html#cb36-3" tabindex="-1"></a>descriptives_bygroup <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span> <span class="co"># Tell R which data set to use.  %&gt;% means &quot;and then&quot; so tells R to move on and do something else</span></span>
+<span id="cb36-4"><a href="session-2-correlation-and-regression.html#cb36-4" tabindex="-1"></a>  <span class="fu">group_by</span>(home_location) <span class="sc">%&gt;%</span> <span class="co"># group_by is telling R to split the data file - put the variable to split by in brackets</span></span>
+<span id="cb36-5"><a href="session-2-correlation-and-regression.html#cb36-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_sat_life =</span> <span class="fu">mean</span>(sat_life), <span class="at">sd_sat_life =</span> <span class="fu">sd</span>(sat_life)) <span class="co"># Ask for the mean and standard deviation. statistic_calculated = statistic(variable  )</span></span>
+<span id="cb36-6"><a href="session-2-correlation-and-regression.html#cb36-6" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="session-2-correlation-and-regression.html#cb36-7" tabindex="-1"></a><span class="co"># You then need R to &quot;print&quot; - or display - the calculated descriptives in the console window.</span></span>
+<span id="cb36-8"><a href="session-2-correlation-and-regression.html#cb36-8" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="session-2-correlation-and-regression.html#cb36-9" tabindex="-1"></a><span class="fu">print</span>(descriptives_bygroup)</span></code></pre></div>
+</div>
+<div id="multiple-regression-with-interactive-predictors" class="section level3 hasAnchor" number="2.1.10">
+<h3><span class="header-section-number">2.1.10</span> MULTIPLE REGRESSION WITH INTERACTIVE PREDICTORS<a href="session-2-correlation-and-regression.html#multiple-regression-with-interactive-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="session-2-correlation-and-regression.html#cb37-1" tabindex="-1"></a><span class="co"># Now, let&#39;s move on to looking at a very simple interactive predictor. For ease of teaching, we will simplify the model...</span></span>
+<span id="cb37-2"><a href="session-2-correlation-and-regression.html#cb37-2" tabindex="-1"></a><span class="co"># Predictor 1: negative life experiences (continuous predictor)</span></span>
+<span id="cb37-3"><a href="session-2-correlation-and-regression.html#cb37-3" tabindex="-1"></a><span class="co"># Predictor 2: relationship status (binary predictor)</span></span>
+<span id="cb37-4"><a href="session-2-correlation-and-regression.html#cb37-4" tabindex="-1"></a><span class="co"># Predictor 3: NLE by relationship status (interactive predictor)</span></span>
+<span id="cb37-5"><a href="session-2-correlation-and-regression.html#cb37-5" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="session-2-correlation-and-regression.html#cb37-6" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sat_life <span class="sc">~</span> neg_life_experiences <span class="sc">+</span> relationship_status <span class="sc">+</span> </span>
+<span id="cb37-7"><a href="session-2-correlation-and-regression.html#cb37-7" tabindex="-1"></a>              neg_life_experiences<span class="sc">*</span>relationship_status, <span class="at">data =</span> mydata)</span>
+<span id="cb37-8"><a href="session-2-correlation-and-regression.html#cb37-8" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="session-2-correlation-and-regression.html#cb37-9" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="session-2-correlation-and-regression.html#cb38-1" tabindex="-1"></a> How do you <span class="cf">break</span> down and understand a significant interactive predictor? Remember comparing correlations <span class="sc">-</span> go back to that<span class="sc">!</span></span>
+<span id="cb38-2"><a href="session-2-correlation-and-regression.html#cb38-2" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="session-2-correlation-and-regression.html#cb38-3" tabindex="-1"></a><span class="co"># Go back to the code we used to statistically compare correlations, and adapt it (if/where needed) to map onto NLE * relationship status predicting SWL...</span></span>
+<span id="cb38-4"><a href="session-2-correlation-and-regression.html#cb38-4" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="session-2-correlation-and-regression.html#cb38-5" tabindex="-1"></a><span class="co"># First, we need to tell R which subgroups within our dataset we want to look at - so identify 0 and 1 from the &quot;relationship_status&quot; variable, and name each one.</span></span>
+<span id="cb38-6"><a href="session-2-correlation-and-regression.html#cb38-6" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="session-2-correlation-and-regression.html#cb38-7" tabindex="-1"></a>single <span class="ot">&lt;-</span> mydata[mydata<span class="sc">$</span>relationship_status <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, ]</span>
+<span id="cb38-8"><a href="session-2-correlation-and-regression.html#cb38-8" tabindex="-1"></a>relationship <span class="ot">&lt;-</span> mydata[mydata<span class="sc">$</span>relationship_status <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, ]</span>
+<span id="cb38-9"><a href="session-2-correlation-and-regression.html#cb38-9" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="session-2-correlation-and-regression.html#cb38-10" tabindex="-1"></a><span class="co"># Now we run the two correlations - we need to tell R first which subgroup to use from the naming we just did, and which continuous variable to correlate.</span></span>
+<span id="cb38-11"><a href="session-2-correlation-and-regression.html#cb38-11" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="session-2-correlation-and-regression.html#cb38-12" tabindex="-1"></a><span class="fu">cor.test</span>(single<span class="sc">$</span>sat_life, single<span class="sc">$</span>neg_life_experiences,</span>
+<span id="cb38-13"><a href="session-2-correlation-and-regression.html#cb38-13" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb38-14"><a href="session-2-correlation-and-regression.html#cb38-14" tabindex="-1"></a><span class="fu">cor.test</span>(relationship<span class="sc">$</span>sat_life, relationship<span class="sc">$</span>neg_life_experiences,</span>
+<span id="cb38-15"><a href="session-2-correlation-and-regression.html#cb38-15" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="session-2-correlation-and-regression.html#cb39-1" tabindex="-1"></a><span class="co"># To compare the correlations statistically, we need the N and the r for each group. The r value is the final value in the output we just created - the final line, under corr.</span></span>
+<span id="cb39-2"><a href="session-2-correlation-and-regression.html#cb39-2" tabindex="-1"></a><span class="co"># To get the N for each group, we ran the &quot;summary&quot; earlier, but you can do it again to save scrolling. </span></span>
+<span id="cb39-3"><a href="session-2-correlation-and-regression.html#cb39-3" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="session-2-correlation-and-regression.html#cb39-4" tabindex="-1"></a><span class="fu">summary</span>(mydata)</span>
+<span id="cb39-5"><a href="session-2-correlation-and-regression.html#cb39-5" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="session-2-correlation-and-regression.html#cb39-6" tabindex="-1"></a><span class="co"># Now we can statistically compare our r values. Make a note of which group you consider to be &quot;1&quot; and which is &quot;2&quot;. For this, it will be 1 is single and 2 is in a relationship.</span></span>
+<span id="cb39-7"><a href="session-2-correlation-and-regression.html#cb39-7" tabindex="-1"></a><span class="co"># First, make sure &quot;cocor&quot; is ticked in the &quot;Packages&quot; tab.</span></span>
+<span id="cb39-8"><a href="session-2-correlation-and-regression.html#cb39-8" tabindex="-1"></a><span class="co"># r1 is the first r-value, in this case -0.5218863 </span></span>
+<span id="cb39-9"><a href="session-2-correlation-and-regression.html#cb39-9" tabindex="-1"></a><span class="co"># r2 is the second r-value, in this case -0.1741089</span></span>
+<span id="cb39-10"><a href="session-2-correlation-and-regression.html#cb39-10" tabindex="-1"></a><span class="co"># n1 is the first sample size, in this case 92</span></span>
+<span id="cb39-11"><a href="session-2-correlation-and-regression.html#cb39-11" tabindex="-1"></a><span class="co"># n2 is the second sample size, in this case 108</span></span>
+<span id="cb39-12"><a href="session-2-correlation-and-regression.html#cb39-12" tabindex="-1"></a><span class="co"># the code looks like this, so just replace the values as needed... cocor.indep.groups(r1, r2, n1, n2)</span></span>
+<span id="cb39-13"><a href="session-2-correlation-and-regression.html#cb39-13" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="session-2-correlation-and-regression.html#cb39-14" tabindex="-1"></a><span class="fu">cocor.indep.groups</span>(<span class="sc">-</span><span class="fl">0.5218863</span>, <span class="sc">-</span><span class="fl">0.1741089</span>, <span class="dv">92</span>, <span class="dv">108</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="session-2-correlation-and-regression.html#cb40-1" tabindex="-1"></a><span class="co"># Final thing to do - graph these two correlations on the same plot to aid interpretation.</span></span>
+<span id="cb40-2"><a href="session-2-correlation-and-regression.html#cb40-2" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="session-2-correlation-and-regression.html#cb40-3" tabindex="-1"></a>plot_cc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> neg_life_experiences, <span class="at">y =</span> sat_life, <span class="at">colour =</span> relationship_status)) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="session-2-correlation-and-regression.html#cb40-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> relationship_status)) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="session-2-correlation-and-regression.html#cb40-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> relationship_status), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="session-2-correlation-and-regression.html#cb40-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Negative life experiences vs Satisfaction with life by Relationship status&quot;</span>,</span>
+<span id="cb40-7"><a href="session-2-correlation-and-regression.html#cb40-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Negative life experiences&quot;</span>,</span>
+<span id="cb40-8"><a href="session-2-correlation-and-regression.html#cb40-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Satisfaction with life&quot;</span>) <span class="sc">+</span></span>
+<span id="cb40-9"><a href="session-2-correlation-and-regression.html#cb40-9" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb40-10"><a href="session-2-correlation-and-regression.html#cb40-10" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb40-11"><a href="session-2-correlation-and-regression.html#cb40-11" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;solid&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;dashed&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb40-12"><a href="session-2-correlation-and-regression.html#cb40-12" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="dv">16</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb40-13"><a href="session-2-correlation-and-regression.html#cb40-13" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="session-2-correlation-and-regression.html#cb40-14" tabindex="-1"></a><span class="co">#Now show the graph in the &quot;Plots&quot; window...</span></span>
+<span id="cb40-15"><a href="session-2-correlation-and-regression.html#cb40-15" tabindex="-1"></a></span>
+<span id="cb40-16"><a href="session-2-correlation-and-regression.html#cb40-16" tabindex="-1"></a><span class="fu">print</span>(plot_cc)</span></code></pre></div>
+</div>
+<div id="assumptions-of-multiple-regression" class="section level3 hasAnchor" number="2.1.11">
+<h3><span class="header-section-number">2.1.11</span> ASSUMPTIONS OF MULTIPLE REGRESSION<a href="session-2-correlation-and-regression.html#assumptions-of-multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="session-2-correlation-and-regression.html#cb41-1" tabindex="-1"></a><span class="co"># Finally, time to look at assumptions!</span></span>
+<span id="cb41-2"><a href="session-2-correlation-and-regression.html#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="session-2-correlation-and-regression.html#cb41-3" tabindex="-1"></a><span class="co"># First, the the regression - you report the regression after the assumptions, but R will need the &quot;model&quot; for the assumptions code.</span></span>
+<span id="cb41-4"><a href="session-2-correlation-and-regression.html#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="session-2-correlation-and-regression.html#cb41-5" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sat_life <span class="sc">~</span> psych_wellbeing <span class="sc">+</span> physical_wellbeing <span class="sc">+</span> relationship_wellbeing <span class="sc">+</span> neg_life_experiences <span class="sc">+</span> occ_status <span class="sc">+</span> relationship_status <span class="sc">+</span> home_location, <span class="at">data =</span> mydata)</span>
+<span id="cb41-6"><a href="session-2-correlation-and-regression.html#cb41-6" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div id="multicollinearity" class="section level4 hasAnchor" number="2.1.11.1">
+<h4><span class="header-section-number">2.1.11.1</span> MULTICOLLINEARITY<a href="session-2-correlation-and-regression.html#multicollinearity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="session-2-correlation-and-regression.html#cb42-1" tabindex="-1"></a><span class="co"># Multicollinearity, looking at r values across all continuous predictor variables.</span></span>
+<span id="cb42-2"><a href="session-2-correlation-and-regression.html#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="session-2-correlation-and-regression.html#cb42-3" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="session-2-correlation-and-regression.html#cb42-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(psych_wellbeing, physical_wellbeing, relationship_wellbeing, neg_life_experiences) <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="session-2-correlation-and-regression.html#cb42-5" tabindex="-1"></a>  <span class="fu">correlation</span>(<span class="at">p_adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb42-6"><a href="session-2-correlation-and-regression.html#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="session-2-correlation-and-regression.html#cb42-7" tabindex="-1"></a><span class="co"># Multicollinearity, calculate VIF.</span></span>
+<span id="cb42-8"><a href="session-2-correlation-and-regression.html#cb42-8" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="session-2-correlation-and-regression.html#cb42-9" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> <span class="fu">vif</span>(model)</span>
+<span id="cb42-10"><a href="session-2-correlation-and-regression.html#cb42-10" tabindex="-1"></a><span class="fu">print</span>(vif_values)</span>
+<span id="cb42-11"><a href="session-2-correlation-and-regression.html#cb42-11" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="session-2-correlation-and-regression.html#cb42-12" tabindex="-1"></a><span class="co"># Multicollinearity, calculate tolerance. This is, essentially 1 - the R2 (so variance explained).</span></span>
+<span id="cb42-13"><a href="session-2-correlation-and-regression.html#cb42-13" tabindex="-1"></a></span>
+<span id="cb42-14"><a href="session-2-correlation-and-regression.html#cb42-14" tabindex="-1"></a>tolerance_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">summary</span>(model)<span class="sc">$</span>r.squared</span>
+<span id="cb42-15"><a href="session-2-correlation-and-regression.html#cb42-15" tabindex="-1"></a><span class="fu">print</span>(tolerance_value)</span></code></pre></div>
+</div>
+<div id="distribution-of-residuals" class="section level4 hasAnchor" number="2.1.11.2">
+<h4><span class="header-section-number">2.1.11.2</span> DISTRIBUTION OF RESIDUALS<a href="session-2-correlation-and-regression.html#distribution-of-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="session-2-correlation-and-regression.html#cb43-1" tabindex="-1"></a><span class="co"># Create the histogram of residuals</span></span>
+<span id="cb43-2"><a href="session-2-correlation-and-regression.html#cb43-2" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="session-2-correlation-and-regression.html#cb43-3" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> model<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="session-2-correlation-and-regression.html#cb43-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="session-2-correlation-and-regression.html#cb43-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of Residuals&quot;</span>,</span>
+<span id="cb43-6"><a href="session-2-correlation-and-regression.html#cb43-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Residuals&quot;</span>,</span>
+<span id="cb43-7"><a href="session-2-correlation-and-regression.html#cb43-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="session-2-correlation-and-regression.html#cb43-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</div>
+<div id="homoscedasticity" class="section level4 hasAnchor" number="2.1.11.3">
+<h4><span class="header-section-number">2.1.11.3</span> HOMOSCEDASTICITY<a href="session-2-correlation-and-regression.html#homoscedasticity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="session-2-correlation-and-regression.html#cb44-1" tabindex="-1"></a><span class="co"># Create the scatterplot for homoscedasticity</span></span>
+<span id="cb44-2"><a href="session-2-correlation-and-regression.html#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="session-2-correlation-and-regression.html#cb44-3" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> model<span class="sc">$</span>fitted.values, <span class="at">y =</span> model<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="session-2-correlation-and-regression.html#cb44-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-5"><a href="session-2-correlation-and-regression.html#cb44-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-6"><a href="session-2-correlation-and-regression.html#cb44-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Residuals vs Fitted Values&quot;</span>,</span>
+<span id="cb44-7"><a href="session-2-correlation-and-regression.html#cb44-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fitted Values&quot;</span>,</span>
+<span id="cb44-8"><a href="session-2-correlation-and-regression.html#cb44-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-9"><a href="session-2-correlation-and-regression.html#cb44-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</div>
+<div id="evaluate-the-number-of-outliers" class="section level4 hasAnchor" number="2.1.11.4">
+<h4><span class="header-section-number">2.1.11.4</span> EVALUATE THE NUMBER OF OUTLIERS<a href="session-2-correlation-and-regression.html#evaluate-the-number-of-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="session-2-correlation-and-regression.html#cb45-1" tabindex="-1"></a><span class="co"># Identify outliers using standardized residuals</span></span>
+<span id="cb45-2"><a href="session-2-correlation-and-regression.html#cb45-2" tabindex="-1"></a>standardized_residuals <span class="ot">&lt;-</span> <span class="fu">rstandard</span>(model)</span>
+<span id="cb45-3"><a href="session-2-correlation-and-regression.html#cb45-3" tabindex="-1"></a><span class="co"># Print standardized residuals</span></span>
+<span id="cb45-4"><a href="session-2-correlation-and-regression.html#cb45-4" tabindex="-1"></a><span class="fu">print</span>(standardized_residuals)</span>
+<span id="cb45-5"><a href="session-2-correlation-and-regression.html#cb45-5" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="session-2-correlation-and-regression.html#cb45-6" tabindex="-1"></a><span class="co"># Determine the number of outliers (absolute value greater than 2)</span></span>
+<span id="cb45-7"><a href="session-2-correlation-and-regression.html#cb45-7" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(standardized_residuals) <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb45-8"><a href="session-2-correlation-and-regression.html#cb45-8" tabindex="-1"></a><span class="fu">print</span>(outliers)</span>
+<span id="cb45-9"><a href="session-2-correlation-and-regression.html#cb45-9" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="session-2-correlation-and-regression.html#cb45-10" tabindex="-1"></a><span class="co"># Calculate the percentage of outliers</span></span>
+<span id="cb45-11"><a href="session-2-correlation-and-regression.html#cb45-11" tabindex="-1"></a>percentage_outliers <span class="ot">&lt;-</span> (outliers <span class="sc">/</span> <span class="fu">nrow</span>(mydata)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb45-12"><a href="session-2-correlation-and-regression.html#cb45-12" tabindex="-1"></a><span class="fu">print</span>(percentage_outliers)</span></code></pre></div>
 
+</div>
+</div>
+</div>
 </div>
             </section>
 
