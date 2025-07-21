@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Session 3: t-Tests and ANOVAs | R Training Summer 2025</title>
+  <title>5 PS2010 Workshop: T-tests (Repeated) | R Training Summer 2025</title>
   <meta name="description" content="Materials and code for summer R training" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Session 3: t-Tests and ANOVAs | R Training Summer 2025" />
+  <meta property="og:title" content="5 PS2010 Workshop: T-tests (Repeated) | R Training Summer 2025" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Materials and code for summer R training" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Session 3: t-Tests and ANOVAs | R Training Summer 2025" />
+  <meta name="twitter:title" content="5 PS2010 Workshop: T-tests (Repeated) | R Training Summer 2025" />
   
   <meta name="twitter:description" content="Materials and code for summer R training" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="session-2-correlation-and-regression.html"/>
-<link rel="next" href="ps2010-workshop-t-tests-independent.html"/>
+<link rel="prev" href="ps2010-workshop-t-tests-independent.html"/>
+<link rel="next" href="workshop-4-one-way-anova-independent.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -220,10 +220,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="session-3-t-tests-and-anovas" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Session 3: t-Tests and ANOVAs<a href="session-3-t-tests-and-anovas.html#session-3-t-tests-and-anovas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="code-used-in-this-session-2" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Code Used in this Session<a href="session-3-t-tests-and-anovas.html#code-used-in-this-session-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ps2010-workshop-t-tests-repeated" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> <strong>PS2010 Workshop: T-tests (Repeated)</strong><a href="ps2010-workshop-t-tests-repeated.html#ps2010-workshop-t-tests-repeated" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Import Data</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="ps2010-workshop-t-tests-repeated.html#cb53-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/redcow3.csv&quot;</span>)</span></code></pre></div>
+<div id="exercise-one-1" class="section level3 hasAnchor" number="5.0.1">
+<h3><span class="header-section-number">5.0.1</span> <strong>Exercise One</strong><a href="ps2010-workshop-t-tests-repeated.html#exercise-one-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We need to call any packages!</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="ps2010-workshop-t-tests-repeated.html#cb54-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rstatix&quot;</span>)</span>
+<span id="cb54-2"><a href="ps2010-workshop-t-tests-repeated.html#cb54-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;effectsize&quot;</span>)</span>
+<span id="cb54-3"><a href="ps2010-workshop-t-tests-repeated.html#cb54-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb54-4"><a href="ps2010-workshop-t-tests-repeated.html#cb54-4" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb54-5"><a href="ps2010-workshop-t-tests-repeated.html#cb54-5" tabindex="-1"></a><span class="fu">library</span>(effectsize)</span></code></pre></div>
+</div>
+<div id="exercise-two-1" class="section level3 hasAnchor" number="5.0.2">
+<h3><span class="header-section-number">5.0.2</span> <strong>Exercise Two</strong><a href="ps2010-workshop-t-tests-repeated.html#exercise-two-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Prepare/Check Data</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ps2010-workshop-t-tests-repeated.html#cb55-1" tabindex="-1"></a><span class="fu">head</span>(mydata)</span>
+<span id="cb55-2"><a href="ps2010-workshop-t-tests-repeated.html#cb55-2" tabindex="-1"></a><span class="fu">summary</span>(mydata) </span></code></pre></div>
+<p>It looks as though the data are not in long format.<br />
+We need to create a new data set with the data in long format.<br />
+Thankfully we can do this with some simple code:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ps2010-workshop-t-tests-repeated.html#cb56-1" tabindex="-1"></a>mydata_long <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span>                <span class="co"># creates a new object called mydata_long</span></span>
+<span id="cb56-2"><a href="ps2010-workshop-t-tests-repeated.html#cb56-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(before, after), <span class="co"># use pivot_longer() and select the column names.</span></span>
+<span id="cb56-3"><a href="ps2010-workshop-t-tests-repeated.html#cb56-3" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;time&quot;</span>,       <span class="co"># give a column name for our independent variable</span></span>
+<span id="cb56-4"><a href="ps2010-workshop-t-tests-repeated.html#cb56-4" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;bpm&quot;</span>)       <span class="co"># give a column name for our dependent variable</span></span></code></pre></div>
+<p>Check that <code>mydata_long</code> has appeared in the environment (top right panel)</p>
+</div>
+<div id="exercise-three-1" class="section level3 hasAnchor" number="5.0.3">
+<h3><span class="header-section-number">5.0.3</span> <strong>Exercise Three</strong><a href="ps2010-workshop-t-tests-repeated.html#exercise-three-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Descriptive Statistics</p>
+<p>Adapt the code below to produce descriptive statistics.<br />
+You need to use the variable names from your long data file: <code>time</code> and <code>bpm</code>.<br />
+Change <code>NULL</code> to the relevant details.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="ps2010-workshop-t-tests-repeated.html#cb57-1" tabindex="-1"></a>desc <span class="ot">&lt;-</span> mydata_long <span class="sc">%&gt;%</span>                           <span class="co"># Which data set will you use?</span></span>
+<span id="cb57-2"><a href="ps2010-workshop-t-tests-repeated.html#cb57-2" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span>                          <span class="co"># what should you split the file by?</span></span>
+<span id="cb57-3"><a href="ps2010-workshop-t-tests-repeated.html#cb57-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bpm), <span class="at">sd =</span> <span class="fu">sd</span>(bpm))   <span class="co"># mean and standard deviation of the dependent variable</span></span>
+<span id="cb57-4"><a href="ps2010-workshop-t-tests-repeated.html#cb57-4" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="ps2010-workshop-t-tests-repeated.html#cb57-5" tabindex="-1"></a><span class="fu">view</span>(desc)</span></code></pre></div>
+</div>
+<div id="exercise-four-1" class="section level3 hasAnchor" number="5.0.4">
+<h3><span class="header-section-number">5.0.4</span> <strong>Exercise Four</strong><a href="ps2010-workshop-t-tests-repeated.html#exercise-four-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Run a repeated t-test comparing BPM before and after drinking RedCow.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ps2010-workshop-t-tests-repeated.html#cb58-1" tabindex="-1"></a><span class="co"># we want to run a t-test to compare the bpm (dependent variable) across time (levels: before vs. after)</span></span>
+<span id="cb58-2"><a href="ps2010-workshop-t-tests-repeated.html#cb58-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> mydata_long<span class="sc">$</span>bpm[mydata_long<span class="sc">$</span>time <span class="sc">==</span> <span class="st">&quot;before&quot;</span>] <span class="co"># tell R which data is &quot;before&quot;</span></span>
+<span id="cb58-3"><a href="ps2010-workshop-t-tests-repeated.html#cb58-3" tabindex="-1"></a>after <span class="ot">&lt;-</span> mydata_long<span class="sc">$</span>bpm[mydata_long<span class="sc">$</span>time <span class="sc">==</span> <span class="st">&quot;after&quot;</span>]   <span class="co"># tell R which data is &quot;after&quot;</span></span>
+<span id="cb58-4"><a href="ps2010-workshop-t-tests-repeated.html#cb58-4" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="ps2010-workshop-t-tests-repeated.html#cb58-5" tabindex="-1"></a>redcow_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-6"><a href="ps2010-workshop-t-tests-repeated.html#cb58-6" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="ps2010-workshop-t-tests-repeated.html#cb58-7" tabindex="-1"></a><span class="fu">print</span>(redcow_t)</span>
+<span id="cb58-8"><a href="ps2010-workshop-t-tests-repeated.html#cb58-8" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="ps2010-workshop-t-tests-repeated.html#cb58-9" tabindex="-1"></a><span class="co"># we also want to find and report the effect size. for a t-test we can use Cohen&#39;s d.</span></span>
+<span id="cb58-10"><a href="ps2010-workshop-t-tests-repeated.html#cb58-10" tabindex="-1"></a><span class="fu">cohens_d</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-11"><a href="ps2010-workshop-t-tests-repeated.html#cb58-11" tabindex="-1"></a></span>
+<span id="cb58-12"><a href="ps2010-workshop-t-tests-repeated.html#cb58-12" tabindex="-1"></a><span class="co">#or try:</span></span>
+<span id="cb58-13"><a href="ps2010-workshop-t-tests-repeated.html#cb58-13" tabindex="-1"></a></span>
+<span id="cb58-14"><a href="ps2010-workshop-t-tests-repeated.html#cb58-14" tabindex="-1"></a><span class="fu">t.test</span>(bpm <span class="sc">~</span> time, mydata_long, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="exercise-five-1" class="section level3 hasAnchor" number="5.0.5">
+<h3><span class="header-section-number">5.0.5</span> <strong>Exercise Five</strong><a href="ps2010-workshop-t-tests-repeated.html#exercise-five-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Check Assumptions</p>
+<p>Use the lines of code below to check the assumption of normality.
+Firstly, we need to calculate a difference score.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="ps2010-workshop-t-tests-repeated.html#cb59-1" tabindex="-1"></a><span class="co"># we need to check normality, but for the difference scores</span></span>
+<span id="cb59-2"><a href="ps2010-workshop-t-tests-repeated.html#cb59-2" tabindex="-1"></a><span class="co"># first we need to calculate the difference score</span></span>
+<span id="cb59-3"><a href="ps2010-workshop-t-tests-repeated.html#cb59-3" tabindex="-1"></a><span class="co"># we will go back to the original data file &quot;mydata&quot; for this, not &quot;mydata_long&quot;</span></span>
+<span id="cb59-4"><a href="ps2010-workshop-t-tests-repeated.html#cb59-4" tabindex="-1"></a>diff <span class="ot">=</span> mydata<span class="sc">$</span>before <span class="sc">-</span> mydata<span class="sc">$</span>after </span>
+<span id="cb59-5"><a href="ps2010-workshop-t-tests-repeated.html#cb59-5" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="ps2010-workshop-t-tests-repeated.html#cb59-6" tabindex="-1"></a><span class="fu">hist</span>(diff) <span class="co">#creates histogram for the diff_score</span></span>
+<span id="cb59-7"><a href="ps2010-workshop-t-tests-repeated.html#cb59-7" tabindex="-1"></a><span class="fu">shapiro.test</span>(diff) <span class="co">#runs Shapiro test for diff_score</span></span></code></pre></div>
 </div>
 </div>
             </section>
@@ -231,8 +296,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="session-2-correlation-and-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ps2010-workshop-t-tests-independent.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ps2010-workshop-t-tests-independent.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="workshop-4-one-way-anova-independent.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

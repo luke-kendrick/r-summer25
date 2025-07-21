@@ -24,14 +24,14 @@ homoscedasticity
 evaluate-the-number-of-outliers
 session-3-t-tests-and-anovas
 code-used-in-this-session-2
-ps2010-workshop-2-t-tests-independent
+ps2010-workshop-t-tests-independent
 exercise-one
 exercise-two
 exercise-three
 exercise-four
 exercise-five
 exercise-six-optional
-workshop-3-t-tests-repeated-and-one-sample
+ps2010-workshop-t-tests-repeated
 exercise-one-1
 exercise-two-1
 exercise-three-1
@@ -49,3 +49,4 @@ exercise-two-3
 exercise-three-3
 exercise-four-3
 exercise-six-1
+factorial-anova

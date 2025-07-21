@@ -2,7 +2,7 @@
 
 ## Code Used in this Session
 
-# **PS2010 Workshop 2: T-tests (Independent)**
+# **PS2010 Workshop: T-tests (Independent)**
 
 ------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ ggplot(mydata, aes(x = drink, y = sleep)) +
   theme_classic()
 ```
 
-# **Workshop 3: T-tests (Repeated and One Sample)**
+# **PS2010 Workshop: T-tests (Repeated)**
 
 Import Data
 
@@ -156,7 +156,7 @@ You need to use the variable names from your long data file: `time` and `bpm`.\
 Change `NULL` to the relevant details.
 
 ```{r, eval = FALSE}
-desc <- mydataL %>%                           # Which data set will you use?
+desc <- mydata_long %>%                           # Which data set will you use?
   group_by(time) %>%                          # what should you split the file by?
   summarise(mean = mean(bpm), sd = sd(bpm))   # mean and standard deviation of the dependent variable
 
@@ -178,6 +178,10 @@ print(redcow_t)
 
 # we also want to find and report the effect size. for a t-test we can use Cohen's d.
 cohens_d(before, after, paired = TRUE)
+
+#or try:
+
+t.test(bpm ~ time, mydata_long, paired = TRUE)
 ```
 
 ### **Exercise Five**
@@ -188,7 +192,7 @@ Use the lines of code below to check the assumption of normality.
 Firstly, we need to calculate a difference score.
 
 ```{r, eval = FALSE}
-# we need to check normality, but for the difference scores (see the lecture if this doesn't make sense)
+# we need to check normality, but for the difference scores
 # first we need to calculate the difference score
 # we will go back to the original data file "mydata" for this, not "mydata_long"
 diff = mydata$before - mydata$after 
@@ -485,3 +489,6 @@ hist(residuals, breaks = 20, main = "Histogram of Residuals", xlab = "Residuals"
 # Shapiro test on residuals
 shapiro.test(residuals) #Shapiro test for residuals
 ```
+
+# **Factorial ANOVA**
+
