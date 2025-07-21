@@ -494,8 +494,14 @@ shapiro.test(residuals) #Shapiro test for residuals
 
 Let's try a different approach for a factorial ANOVA.
 
-Also to demonstrate how easy it is to share and re-use another script.
+Also to demonstrate how easy it is to share and re-use another person's script.
 
-Download link: [here](downloads/NULL).
+Download link: [here](downloads/factorial_ind_anova.R).
 
 Open the File in RStudio.
+
+Use this line of code to import the data set:
+
+```{r, eval = FALSE}
+mydata <- read_csv("https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/socialmedia.csv")
+```
