@@ -505,3 +505,15 @@ Use this line of code to import the data set:
 ```{r, eval = FALSE}
 mydata <- read_csv("https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/socialmedia.csv")
 ```
+
+## Data Files Used
+
+Independent t-Test: [here](downloads/redcow2.csv).
+
+Repeated t-Test: [here](downloads/redcow3.csv).
+
+Independent One-Way ANOVA: [here](downloads/earlybird.csv).
+
+Repeated One-Way ANOVA: [here](downloads/memory.csv).
+
+Factorial ANOVA: [here](downloads/socialmedia.csv).
