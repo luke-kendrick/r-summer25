@@ -1,1 +1,487 @@
 # Session 3: t-Tests and ANOVAs
+
+## Code Used in this Session
+
+# **PS2010 Workshop 2: T-tests (Independent)**
+
+------------------------------------------------------------------------
+
+### **Exercise One**
+
+We need to call any packages!
+
+```{r, eval = FALSE}
+install.packages("rstatix")
+library(tidyverse)
+library(rstatix)
+```
+
+Import Data
+
+```{r, eval = FALSE}
+mydata <- read_csv("https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/redcow2.csv")
+```
+
+------------------------------------------------------------------------
+
+### **Exercise Two**
+
+Prepare/Check Data
+
+```{r, eval = FALSE}
+names(mydata) 
+summary(mydata)
+```
+
+------------------------------------------------------------------------
+
+### **Exercise Three**
+
+Describe Data
+
+```{r, eval = FALSE}
+# we want to produce some basic descriptive statistics for our data set.
+# we know that we want to compare redcow with water, so use the same code from last week to produce mean values.
+desc <- mydata %>%
+  group_by(drink) %>%
+  summarise(mean = mean(sleep), sd = sd(sleep))
+
+# now we will print our descriptive stats in something called a tibble
+print(desc) # print to console
+view(desc) # open in new tab, it is best to use this
+```
+
+------------------------------------------------------------------------
+
+### **Exercise Four**
+
+Run the t-Test
+
+Run an independent t-test comparing sleep score for the redcow vs. water groups.
+
+```{r, eval = FALSE}
+# we want to run a t-test to compare the sleep score (dependent variable) across the two drink groups (independent variable: redcow and water)
+redcow_t <- t.test(sleep ~ drink, mydata, var.equal = FALSE)
+
+print(redcow_t)
+
+# we also want to find and report the effect size. for a t-test we can use Cohen's d.
+mydata %>% 
+  cohens_d(sleep ~ drink, var.equal = FALSE)
+```
+
+------------------------------------------------------------------------
+
+### **Exercise Five**
+
+Check Assumptions
+
+```{r, eval = FALSE}
+# we want to check any necessary assumptions that might change how we interpret our model
+# we do not need to look at homogeneity of variance when using Welch's t-test.
+# we only need to look at normality.
+hist(mydata$sleep[mydata$drink == "redcow"]) #creates histogram for redcow
+hist(mydata$sleep[mydata$drink == "water"]) #creates histogram for water
+
+shapiro.test(mydata$sleep[mydata$drink == "redcow"]) #runs Shapiro test for redcow
+shapiro.test(mydata$sleep[mydata$drink == "water"]) #runs Shapiro test for water
+```
+
+------------------------------------------------------------------------
+
+### **Exercise Six (Optional)**
+
+You will practice graphing your findings from next week.
+But for those of you who want a head start, feel free to run the code below to visually present your descriptive statistics.
+Copy and paste the code below.
+
+```{r, eval = FALSE}
+# use the code to create a box plot of your descriptive statistics.
+ggplot(mydata, aes(x = drink, y = sleep)) +
+  geom_boxplot() +
+  labs(title = "Sleep Quality Score for RedCow vs Water",
+       x = "Drink",
+       y = "Mean Sleep Quality Score") +
+  theme_classic()
+```
+
+# **Workshop 3: T-tests (Repeated and One Sample)**
+
+Import Data
+
+```{r, eval = FALSE}
+mydata <- read_csv("https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/redcow3.csv")
+```
+
+### **Exercise One**
+
+We need to call any packages!
+
+```{r, eval = FALSE}
+install.packages("rstatix")
+install.packages("effectsize")
+library(tidyverse)
+library(rstatix)
+library(effectsize)
+```
+
+### **Exercise Two**
+
+Prepare/Check Data
+
+```{r, eval = FALSE}
+head(mydata)
+summary(mydata) 
+```
+
+It looks as though the data are not in long format.\
+We need to create a new data set with the data in long format.\
+Thankfully we can do this with some simple code:
+
+```{r, eval = FALSE}
+mydata_long <- mydata %>%                # creates a new object called mydata_long
+  pivot_longer(cols = c(before, after), # use pivot_longer() and select the column names.
+               names_to = "time",       # give a column name for our independent variable
+               values_to = "bpm")       # give a column name for our dependent variable
+```
+
+Check that `mydata_long` has appeared in the environment (top right panel)
+
+### **Exercise Three**
+
+Descriptive Statistics
+
+Adapt the code below to produce descriptive statistics.\
+You need to use the variable names from your long data file: `time` and `bpm`.\
+Change `NULL` to the relevant details.
+
+```{r, eval = FALSE}
+desc <- mydataL %>%                           # Which data set will you use?
+  group_by(time) %>%                          # what should you split the file by?
+  summarise(mean = mean(bpm), sd = sd(bpm))   # mean and standard deviation of the dependent variable
+
+view(desc)
+```
+
+### **Exercise Four**
+
+Run a repeated t-test comparing BPM before and after drinking RedCow.
+
+```{r, eval = FALSE}
+# we want to run a t-test to compare the bpm (dependent variable) across time (levels: before vs. after)
+before <- mydata_long$bpm[mydata_long$time == "before"] # tell R which data is "before"
+after <- mydata_long$bpm[mydata_long$time == "after"]   # tell R which data is "after"
+
+redcow_t <- t.test(before, after, paired = TRUE)
+
+print(redcow_t)
+
+# we also want to find and report the effect size. for a t-test we can use Cohen's d.
+cohens_d(before, after, paired = TRUE)
+```
+
+### **Exercise Five**
+
+Check Assumptions
+
+Use the lines of code below to check the assumption of normality.
+Firstly, we need to calculate a difference score.
+
+```{r, eval = FALSE}
+# we need to check normality, but for the difference scores (see the lecture if this doesn't make sense)
+# first we need to calculate the difference score
+# we will go back to the original data file "mydata" for this, not "mydata_long"
+diff = mydata$before - mydata$after 
+
+hist(diff) #creates histogram for the diff_score
+shapiro.test(diff) #runs Shapiro test for diff_score
+```
+
+# **Workshop 4: One-Way ANOVA (Independent)**
+
+### **Exercise One**
+
+We need to call any packages!
+
+```{r, eval = FALSE}
+# only install packages if you don't have them installed already
+install.packages("emmeans")
+install.packages("afex")
+install.packages("car")
+
+# otherwise just call the packages
+library(tidyverse)
+library(afex)
+library(rstatix)
+library(emmeans)
+library(broom)
+library(car)
+```
+
+Import Data
+
+```{r, eval = FALSE}
+mydata <- read_csv("https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/earlybird.csv")
+```
+
+### **Exercise Two**
+
+Prepare/Check Data
+
+```{r, eval = FALSE}
+# have a quick check of your data file to learn about it.
+head(mydata)
+names(mydata)
+summary(mydata)
+```
+
+### **Exercise Three**
+
+Descriptive Statistics
+
+Adapt the code below to produce descriptive statistics (replace `NULL`).
+
+```{r, eval = FALSE}
+desc <- mydata %>%                        # Which data set will you use?
+  group_by(group) %>%                              # what should you split the file by?
+  summarise(mean = mean(alert), sd = sd(alert))     # mean and standard deviation of the dependent variable
+
+view(desc)
+```
+
+We can also look at a box plot of our data.
+Use the code below to generate a box plot:
+
+```{r, eval = FALSE}
+#how about a box plot too
+
+ggplot(mydata, aes(x = group, y = alert, fill = group)) +
+  geom_boxplot() +
+  theme_classic()
+```
+
+### **Exercise Four**
+
+RUn the ANOVA
+
+Run a one-way independent ANOVA comparing the three groups (lark, neither, owl) as the independent variable and the alertness score as dependent variable.
+For this exercise you should run a post-hoc test.
+
+```{r, eval = FALSE}
+#run the ANOVA model
+anova_result <- aov_ez(id = "id",             # identifier variable
+                       dv = "alert",          # dependent variable variable name
+                       between = "group",     # between subjects variable name
+                       type = 3,              # leave this as `3`
+                       include_aov = TRUE,    # leave this as `TRUE`
+                       data = mydata)         # name of your data file
+
+# just some code to help tidy the output
+anova_result_output <- (anova_result$anova_table) %>%
+  tidy()
+view(anova_result_output)
+
+# we need eta squared for the effect size
+install.packages("effectsize")
+library(effectsize)
+eta_squared(anova_result, partial = FALSE) # asks for eta square
+```
+
+**Post-hoc Options**
+
+First we need to run `emmeans()`
+
+```{r, eval = FALSE}
+# we need emmeans to run post-hocs
+em_means <- emmeans(anova_result, ~ group)  # group is the between subjects variable in our data
+```
+
+Then set-up the pairwise comparisons and decide which alpha level adjustment to use.\
+Pick one from either:\
+1.
+Holm\
+2.
+Bonferroni\
+3.
+Tukey HSD
+
+```{r, eval = FALSE}
+pairwise_contrasts <- contrast(em_means, method = "pairwise") # set up pairwise comparisons
+
+print(pairwise_contrasts, adjust = "holm")                    # applies holm adjustment
+print(pairwise_contrasts, adjust = "bonferroni")              # applies bonf adjustment
+print(pairwise_contrasts, adjust = "tukey")                   # applies tukey adjustment
+```
+
+### **Exercise Six**
+
+Check Assumptions
+
+Use the code below to evaluate both normality and homogeneity of variance.
+
+```{r, eval = FALSE}
+#testing normality, looking at normal distribution of residuals from the model.
+residuals <- residuals(anova_result) #pulls residuals from the model
+
+# produce QQ-Plot
+qqPlot(residuals) #produces a qq-plot of residuals
+
+# produce histogram of residuals
+hist(residuals, breaks = 20, main = "Histogram of Residuals", xlab = "Residuals", col = "lightblue") 
+
+# Shapiro test on residuals
+shapiro.test(residuals) #Shapiro test for residuals
+
+# testing homogeneity of variance
+leveneTest(alert ~ group, mydata)
+```
+
+# **Workshop 5: One-Way ANOVA (Repeated)**
+
+### **Exercise One**
+
+We need to call any packages!
+
+```{r, eval = FALSE}
+library(tidyverse)
+library(broom)
+library(afex)
+library(emmeans)
+library(car)
+```
+
+Import Data
+
+```{r, eval = FALSE}
+mydata <- read_csv("https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/memory.csv")
+```
+
+### **Exercise Two**
+
+Prepare/Check Data
+
+```{r, eval = FALSE}
+head(mydata)
+names(mydata)
+summary(mydata)
+```
+
+The data set does not appear to be in long/tidy form.\
+We need to change that using `pivot_longer`.
+We will create a new version of the data but in long format.
+
+```{r, eval = FALSE}
+#it looks like the data are not in long format. we need to fix that.
+longdata <- mydata %>%                             # creates a new object called mydata_long
+  pivot_longer(cols = c(year1, year2, year3, year4),  # the existing column names for the IV
+               names_to = "time",                     # the name of your independent variable
+               values_to = "score")                   # the name of you dependent variable
+```
+
+### **Exercise Three**
+
+Descriptive Statistics
+
+Adapt the code to produce descriptive stats in the same way you have done previously.\
+\*Hint: Use `longdata` as your data set.
+
+```{r, eval = FALSE}
+desc <- NULL %>%                       # Which data set will you use?
+  group_by(NULL) %>%                          # what should you split the file by?
+  summarise(mean = mean(NULL), sd = sd(NULL)) # mean and standard deviation of the dependent variable
+
+view(desc)
+```
+
+### **Exercise Four**
+
+Run the ANOVAs
+
+Run a one-way repeated ANOVA comparing memory score across the four time points (year1, year2, year3, year4).\
+Adapt the code below.
+Change `NULL` to the relevant variables/information
+
+```{r, eval = FALSE}
+anova_result <- aov_ez(id = "NULL",
+                       dv = "NULL",
+                       within = "NULL",
+                       type = 3,
+                       include_aov = TRUE,
+                       data = NULL)
+
+# just some code to help tidy the output
+anova_result_output <- (anova_result$anova_table) %>%
+  tidy()
+view(anova_result_output)
+
+# we need eta squared for the effect size
+library(effectsize)
+eta_squared(anova_result, partial = FALSE) # asks for eta square
+```
+
+We might also want to `print()` the ANOVA results.
+This is because we can see if a Greenhouse-Geisser correction has been applied.\
+You can check this using two methods:\
+1.
+If the degrees of freedom in the ANOVA output are not whole numbers, and have two decimal places then the assumption of Sphericity was not met and the model has automatically adjusted to account for this.\
+2.
+You can use the code below to `print()` the model and it will tell you if any correction was applied.
+
+```{r, eval = FALSE}
+print(anova_result)  # prints the ANOVA result to the console (bottom left panel)
+```
+
+Once you have looked at the ANOVA output and interpreted, if there is a significant difference you should run planned or post-hoc comparisons.\
+For today's example, we want to use a planned contrast.
+
+First we need to pull out the `emmeans()`.\
+Change `NULL` to the independent variable in the model: `time`.
+
+```{r, eval = FALSE}
+# for any contrasts or post-hocs we need emmeans
+em_means <- emmeans(anova_result, ~ NULL)   # NULL should be the independent variable.
+```
+
+Now let's run the code for a polynomial contrast.
+
+```{r, eval = FALSE}
+#let's run a polynomial contrast
+poly_contrasts <- contrast(em_means, method = "poly") #sets up an runs the polynomial contrast
+
+print(poly_contrasts)
+```
+
+It might help to visualise this effect.\
+Maybe a line chart could help...
+
+```{r, eval = FALSE}
+#let's visualise the data to help our interpretation
+ggplot(mydata_long, aes(x = time, y = score, fill = time)) +
+  stat_summary(fun = mean, geom = "line", color = "black", size = 1, aes(group = 1)) +  # line for mean
+  theme_classic() +
+  labs(title = "Plot of Memory Score Across Time",  # add a title
+       x = "Time Point",  # X-axis label
+       y = "Memory Score")  # Y-axis label
+```
+
+### **Exercise Six**
+
+Check Assumptions
+
+Use the code below to evaluate both normality and homogeneity of variance.\
+This will run it for the `anova_result` model from exercise four.\
+You can just add a `c` into the code to also check for the ANCOVA model.
+
+```{r, eval = FALSE}
+#testing normality, looking at normal distribution of residuals from the model.
+residuals <- residuals(anova_result) #pulls residuals from the model
+
+# produce QQ-Plot
+qqPlot(residuals) #produces a qq-plot of residuals
+
+# produce histogram of residuals
+hist(residuals, breaks = 20, main = "Histogram of Residuals", xlab = "Residuals", col = "lightblue") 
+
+# Shapiro test on residuals
+shapiro.test(residuals) #Shapiro test for residuals
+```
