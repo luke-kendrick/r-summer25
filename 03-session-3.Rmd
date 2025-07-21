@@ -2,7 +2,7 @@
 
 ## Code Used in this Session
 
-# **PS2010 Workshop: T-tests (Independent)**
+## **PS2010 Workshop: T-tests (Independent)**
 
 ------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ ggplot(mydata, aes(x = drink, y = sleep)) +
   theme_classic()
 ```
 
-# **PS2010 Workshop: T-tests (Repeated)**
+## **PS2010 Workshop: T-tests (Repeated)**
 
 Import Data
 
@@ -201,7 +201,7 @@ hist(diff) #creates histogram for the diff_score
 shapiro.test(diff) #runs Shapiro test for diff_score
 ```
 
-# **Workshop 4: One-Way ANOVA (Independent)**
+## **Workshop 4: One-Way ANOVA (Independent)**
 
 ### **Exercise One**
 
@@ -340,7 +340,7 @@ shapiro.test(residuals) #Shapiro test for residuals
 leveneTest(alert ~ group, mydata)
 ```
 
-# **Workshop 5: One-Way ANOVA (Repeated)**
+## **Workshop 5: One-Way ANOVA (Repeated)**
 
 ### **Exercise One**
 
@@ -490,5 +490,5 @@ hist(residuals, breaks = 20, main = "Histogram of Residuals", xlab = "Residuals"
 shapiro.test(residuals) #Shapiro test for residuals
 ```
 
-# **Factorial ANOVA**
+## **Factorial ANOVA**
 
