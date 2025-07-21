@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Session 3: t-Tests and ANOVAs | R Training Summer 2025</title>
+  <title>4 PS2010 Workshop 2: T-tests (Independent) | R Training Summer 2025</title>
   <meta name="description" content="Materials and code for summer R training" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Session 3: t-Tests and ANOVAs | R Training Summer 2025" />
+  <meta property="og:title" content="4 PS2010 Workshop 2: T-tests (Independent) | R Training Summer 2025" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Materials and code for summer R training" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Session 3: t-Tests and ANOVAs | R Training Summer 2025" />
+  <meta name="twitter:title" content="4 PS2010 Workshop 2: T-tests (Independent) | R Training Summer 2025" />
   
   <meta name="twitter:description" content="Materials and code for summer R training" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="session-2-correlation-and-regression.html"/>
-<link rel="next" href="ps2010-workshop-2-t-tests-independent.html"/>
+<link rel="prev" href="session-3-t-tests-and-anovas.html"/>
+<link rel="next" href="workshop-3-t-tests-repeated-and-one-sample.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -219,10 +219,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="session-3-t-tests-and-anovas" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Session 3: t-Tests and ANOVAs<a href="session-3-t-tests-and-anovas.html#session-3-t-tests-and-anovas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="code-used-in-this-session-2" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Code Used in this Session<a href="session-3-t-tests-and-anovas.html#code-used-in-this-session-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ps2010-workshop-2-t-tests-independent" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> <strong>PS2010 Workshop 2: T-tests (Independent)</strong><a href="ps2010-workshop-2-t-tests-independent.html#ps2010-workshop-2-t-tests-independent" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+<div id="exercise-one" class="section level3 hasAnchor" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> <strong>Exercise One</strong><a href="ps2010-workshop-2-t-tests-independent.html#exercise-one" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We need to call any packages!</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ps2010-workshop-2-t-tests-independent.html#cb46-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rstatix&quot;</span>)</span>
+<span id="cb46-2"><a href="ps2010-workshop-2-t-tests-independent.html#cb46-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb46-3"><a href="ps2010-workshop-2-t-tests-independent.html#cb46-3" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div>
+<p>Import Data</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="ps2010-workshop-2-t-tests-independent.html#cb47-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/redcow2.csv&quot;</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="exercise-two" class="section level3 hasAnchor" number="4.0.2">
+<h3><span class="header-section-number">4.0.2</span> <strong>Exercise Two</strong><a href="ps2010-workshop-2-t-tests-independent.html#exercise-two" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Prepare/Check Data</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ps2010-workshop-2-t-tests-independent.html#cb48-1" tabindex="-1"></a><span class="fu">names</span>(mydata) </span>
+<span id="cb48-2"><a href="ps2010-workshop-2-t-tests-independent.html#cb48-2" tabindex="-1"></a><span class="fu">summary</span>(mydata)</span></code></pre></div>
+<hr />
+</div>
+<div id="exercise-three" class="section level3 hasAnchor" number="4.0.3">
+<h3><span class="header-section-number">4.0.3</span> <strong>Exercise Three</strong><a href="ps2010-workshop-2-t-tests-independent.html#exercise-three" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Describe Data</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-1" tabindex="-1"></a><span class="co"># we want to produce some basic descriptive statistics for our data set.</span></span>
+<span id="cb49-2"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-2" tabindex="-1"></a><span class="co"># we know that we want to compare redcow with water, so use the same code from last week to produce mean values.</span></span>
+<span id="cb49-3"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-3" tabindex="-1"></a>desc <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span></span>
+<span id="cb49-4"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-4" tabindex="-1"></a>  <span class="fu">group_by</span>(drink) <span class="sc">%&gt;%</span></span>
+<span id="cb49-5"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(sleep), <span class="at">sd =</span> <span class="fu">sd</span>(sleep))</span>
+<span id="cb49-6"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-6" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-7" tabindex="-1"></a><span class="co"># now we will print our descriptive stats in something called a tibble</span></span>
+<span id="cb49-8"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-8" tabindex="-1"></a><span class="fu">print</span>(desc) <span class="co"># print to console</span></span>
+<span id="cb49-9"><a href="ps2010-workshop-2-t-tests-independent.html#cb49-9" tabindex="-1"></a><span class="fu">view</span>(desc) <span class="co"># open in new tab, it is best to use this</span></span></code></pre></div>
+<hr />
+</div>
+<div id="exercise-four" class="section level3 hasAnchor" number="4.0.4">
+<h3><span class="header-section-number">4.0.4</span> <strong>Exercise Four</strong><a href="ps2010-workshop-2-t-tests-independent.html#exercise-four" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Run the t-Test</p>
+<p>Run an independent t-test comparing sleep score for the redcow vs. water groups.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-1" tabindex="-1"></a><span class="co"># we want to run a t-test to compare the sleep score (dependent variable) across the two drink groups (independent variable: redcow and water)</span></span>
+<span id="cb50-2"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-2" tabindex="-1"></a>redcow_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(sleep <span class="sc">~</span> drink, mydata, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb50-3"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-3" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-4" tabindex="-1"></a><span class="fu">print</span>(redcow_t)</span>
+<span id="cb50-5"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-6" tabindex="-1"></a><span class="co"># we also want to find and report the effect size. for a t-test we can use Cohen&#39;s d.</span></span>
+<span id="cb50-7"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-7" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span> </span>
+<span id="cb50-8"><a href="ps2010-workshop-2-t-tests-independent.html#cb50-8" tabindex="-1"></a>  <span class="fu">cohens_d</span>(sleep <span class="sc">~</span> drink, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="exercise-five" class="section level3 hasAnchor" number="4.0.5">
+<h3><span class="header-section-number">4.0.5</span> <strong>Exercise Five</strong><a href="ps2010-workshop-2-t-tests-independent.html#exercise-five" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Check Assumptions</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-1" tabindex="-1"></a><span class="co"># we want to check any necessary assumptions that might change how we interpret our model</span></span>
+<span id="cb51-2"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-2" tabindex="-1"></a><span class="co"># we do not need to look at homogeneity of variance when using Welch&#39;s t-test.</span></span>
+<span id="cb51-3"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-3" tabindex="-1"></a><span class="co"># we only need to look at normality.</span></span>
+<span id="cb51-4"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-4" tabindex="-1"></a><span class="fu">hist</span>(mydata<span class="sc">$</span>sleep[mydata<span class="sc">$</span>drink <span class="sc">==</span> <span class="st">&quot;redcow&quot;</span>]) <span class="co">#creates histogram for redcow</span></span>
+<span id="cb51-5"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-5" tabindex="-1"></a><span class="fu">hist</span>(mydata<span class="sc">$</span>sleep[mydata<span class="sc">$</span>drink <span class="sc">==</span> <span class="st">&quot;water&quot;</span>]) <span class="co">#creates histogram for water</span></span>
+<span id="cb51-6"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-6" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-7" tabindex="-1"></a><span class="fu">shapiro.test</span>(mydata<span class="sc">$</span>sleep[mydata<span class="sc">$</span>drink <span class="sc">==</span> <span class="st">&quot;redcow&quot;</span>]) <span class="co">#runs Shapiro test for redcow</span></span>
+<span id="cb51-8"><a href="ps2010-workshop-2-t-tests-independent.html#cb51-8" tabindex="-1"></a><span class="fu">shapiro.test</span>(mydata<span class="sc">$</span>sleep[mydata<span class="sc">$</span>drink <span class="sc">==</span> <span class="st">&quot;water&quot;</span>]) <span class="co">#runs Shapiro test for water</span></span></code></pre></div>
+<hr />
+</div>
+<div id="exercise-six-optional" class="section level3 hasAnchor" number="4.0.6">
+<h3><span class="header-section-number">4.0.6</span> <strong>Exercise Six (Optional)</strong><a href="ps2010-workshop-2-t-tests-independent.html#exercise-six-optional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will practice graphing your findings from next week.
+But for those of you who want a head start, feel free to run the code below to visually present your descriptive statistics.
+Copy and paste the code below.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="ps2010-workshop-2-t-tests-independent.html#cb52-1" tabindex="-1"></a><span class="co"># use the code to create a box plot of your descriptive statistics.</span></span>
+<span id="cb52-2"><a href="ps2010-workshop-2-t-tests-independent.html#cb52-2" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> drink, <span class="at">y =</span> sleep)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="ps2010-workshop-2-t-tests-independent.html#cb52-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb52-4"><a href="ps2010-workshop-2-t-tests-independent.html#cb52-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sleep Quality Score for RedCow vs Water&quot;</span>,</span>
+<span id="cb52-5"><a href="ps2010-workshop-2-t-tests-independent.html#cb52-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Drink&quot;</span>,</span>
+<span id="cb52-6"><a href="ps2010-workshop-2-t-tests-independent.html#cb52-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean Sleep Quality Score&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-7"><a href="ps2010-workshop-2-t-tests-independent.html#cb52-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -230,8 +299,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="session-2-correlation-and-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ps2010-workshop-2-t-tests-independent.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="session-3-t-tests-and-anovas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="workshop-3-t-tests-repeated-and-one-sample.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

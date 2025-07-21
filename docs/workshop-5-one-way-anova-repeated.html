@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Session 3: t-Tests and ANOVAs | R Training Summer 2025</title>
+  <title>7 Workshop 5: One-Way ANOVA (Repeated) | R Training Summer 2025</title>
   <meta name="description" content="Materials and code for summer R training" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Session 3: t-Tests and ANOVAs | R Training Summer 2025" />
+  <meta property="og:title" content="7 Workshop 5: One-Way ANOVA (Repeated) | R Training Summer 2025" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Materials and code for summer R training" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Session 3: t-Tests and ANOVAs | R Training Summer 2025" />
+  <meta name="twitter:title" content="7 Workshop 5: One-Way ANOVA (Repeated) | R Training Summer 2025" />
   
   <meta name="twitter:description" content="Materials and code for summer R training" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="session-2-correlation-and-regression.html"/>
-<link rel="next" href="ps2010-workshop-2-t-tests-independent.html"/>
+<link rel="prev" href="workshop-4-one-way-anova-independent.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -219,10 +219,113 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="session-3-t-tests-and-anovas" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Session 3: t-Tests and ANOVAs<a href="session-3-t-tests-and-anovas.html#session-3-t-tests-and-anovas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="code-used-in-this-session-2" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Code Used in this Session<a href="session-3-t-tests-and-anovas.html#code-used-in-this-session-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="workshop-5-one-way-anova-repeated" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> <strong>Workshop 5: One-Way ANOVA (Repeated)</strong><a href="workshop-5-one-way-anova-repeated.html#workshop-5-one-way-anova-repeated" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="exercise-one-3" class="section level3 hasAnchor" number="7.0.1">
+<h3><span class="header-section-number">7.0.1</span> <strong>Exercise One</strong><a href="workshop-5-one-way-anova-repeated.html#exercise-one-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We need to call any packages!</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="workshop-5-one-way-anova-repeated.html#cb69-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb69-2"><a href="workshop-5-one-way-anova-repeated.html#cb69-2" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb69-3"><a href="workshop-5-one-way-anova-repeated.html#cb69-3" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb69-4"><a href="workshop-5-one-way-anova-repeated.html#cb69-4" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb69-5"><a href="workshop-5-one-way-anova-repeated.html#cb69-5" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<p>Import Data</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="workshop-5-one-way-anova-repeated.html#cb70-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/luke-kendrick/r-summer25/main/downloads/memory.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="exercise-two-3" class="section level3 hasAnchor" number="7.0.2">
+<h3><span class="header-section-number">7.0.2</span> <strong>Exercise Two</strong><a href="workshop-5-one-way-anova-repeated.html#exercise-two-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Prepare/Check Data</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="workshop-5-one-way-anova-repeated.html#cb71-1" tabindex="-1"></a><span class="fu">head</span>(mydata)</span>
+<span id="cb71-2"><a href="workshop-5-one-way-anova-repeated.html#cb71-2" tabindex="-1"></a><span class="fu">names</span>(mydata)</span>
+<span id="cb71-3"><a href="workshop-5-one-way-anova-repeated.html#cb71-3" tabindex="-1"></a><span class="fu">summary</span>(mydata)</span></code></pre></div>
+<p>The data set does not appear to be in long/tidy form.<br />
+We need to change that using <code>pivot_longer</code>.
+We will create a new version of the data but in long format.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="workshop-5-one-way-anova-repeated.html#cb72-1" tabindex="-1"></a><span class="co">#it looks like the data are not in long format. we need to fix that.</span></span>
+<span id="cb72-2"><a href="workshop-5-one-way-anova-repeated.html#cb72-2" tabindex="-1"></a>longdata <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span>                             <span class="co"># creates a new object called mydata_long</span></span>
+<span id="cb72-3"><a href="workshop-5-one-way-anova-repeated.html#cb72-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(year1, year2, year3, year4),  <span class="co"># the existing column names for the IV</span></span>
+<span id="cb72-4"><a href="workshop-5-one-way-anova-repeated.html#cb72-4" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;time&quot;</span>,                     <span class="co"># the name of your independent variable</span></span>
+<span id="cb72-5"><a href="workshop-5-one-way-anova-repeated.html#cb72-5" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;score&quot;</span>)                   <span class="co"># the name of you dependent variable</span></span></code></pre></div>
+</div>
+<div id="exercise-three-3" class="section level3 hasAnchor" number="7.0.3">
+<h3><span class="header-section-number">7.0.3</span> <strong>Exercise Three</strong><a href="workshop-5-one-way-anova-repeated.html#exercise-three-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Descriptive Statistics</p>
+<p>Adapt the code to produce descriptive stats in the same way you have done previously.<br />
+*Hint: Use <code>longdata</code> as your data set.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="workshop-5-one-way-anova-repeated.html#cb73-1" tabindex="-1"></a>desc <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="sc">%&gt;%</span>                       <span class="co"># Which data set will you use?</span></span>
+<span id="cb73-2"><a href="workshop-5-one-way-anova-repeated.html#cb73-2" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span>                          <span class="co"># what should you split the file by?</span></span>
+<span id="cb73-3"><a href="workshop-5-one-way-anova-repeated.html#cb73-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(<span class="cn">NULL</span>), <span class="at">sd =</span> <span class="fu">sd</span>(<span class="cn">NULL</span>)) <span class="co"># mean and standard deviation of the dependent variable</span></span>
+<span id="cb73-4"><a href="workshop-5-one-way-anova-repeated.html#cb73-4" tabindex="-1"></a></span>
+<span id="cb73-5"><a href="workshop-5-one-way-anova-repeated.html#cb73-5" tabindex="-1"></a><span class="fu">view</span>(desc)</span></code></pre></div>
+</div>
+<div id="exercise-four-3" class="section level3 hasAnchor" number="7.0.4">
+<h3><span class="header-section-number">7.0.4</span> <strong>Exercise Four</strong><a href="workshop-5-one-way-anova-repeated.html#exercise-four-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Run the ANOVAs</p>
+<p>Run a one-way repeated ANOVA comparing memory score across the four time points (year1, year2, year3, year4).<br />
+Adapt the code below.
+Change <code>NULL</code> to the relevant variables/information</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="workshop-5-one-way-anova-repeated.html#cb74-1" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">&quot;NULL&quot;</span>,</span>
+<span id="cb74-2"><a href="workshop-5-one-way-anova-repeated.html#cb74-2" tabindex="-1"></a>                       <span class="at">dv =</span> <span class="st">&quot;NULL&quot;</span>,</span>
+<span id="cb74-3"><a href="workshop-5-one-way-anova-repeated.html#cb74-3" tabindex="-1"></a>                       <span class="at">within =</span> <span class="st">&quot;NULL&quot;</span>,</span>
+<span id="cb74-4"><a href="workshop-5-one-way-anova-repeated.html#cb74-4" tabindex="-1"></a>                       <span class="at">type =</span> <span class="dv">3</span>,</span>
+<span id="cb74-5"><a href="workshop-5-one-way-anova-repeated.html#cb74-5" tabindex="-1"></a>                       <span class="at">include_aov =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb74-6"><a href="workshop-5-one-way-anova-repeated.html#cb74-6" tabindex="-1"></a>                       <span class="at">data =</span> <span class="cn">NULL</span>)</span>
+<span id="cb74-7"><a href="workshop-5-one-way-anova-repeated.html#cb74-7" tabindex="-1"></a></span>
+<span id="cb74-8"><a href="workshop-5-one-way-anova-repeated.html#cb74-8" tabindex="-1"></a><span class="co"># just some code to help tidy the output</span></span>
+<span id="cb74-9"><a href="workshop-5-one-way-anova-repeated.html#cb74-9" tabindex="-1"></a>anova_result_output <span class="ot">&lt;-</span> (anova_result<span class="sc">$</span>anova_table) <span class="sc">%&gt;%</span></span>
+<span id="cb74-10"><a href="workshop-5-one-way-anova-repeated.html#cb74-10" tabindex="-1"></a>  <span class="fu">tidy</span>()</span>
+<span id="cb74-11"><a href="workshop-5-one-way-anova-repeated.html#cb74-11" tabindex="-1"></a><span class="fu">view</span>(anova_result_output)</span>
+<span id="cb74-12"><a href="workshop-5-one-way-anova-repeated.html#cb74-12" tabindex="-1"></a></span>
+<span id="cb74-13"><a href="workshop-5-one-way-anova-repeated.html#cb74-13" tabindex="-1"></a><span class="co"># we need eta squared for the effect size</span></span>
+<span id="cb74-14"><a href="workshop-5-one-way-anova-repeated.html#cb74-14" tabindex="-1"></a><span class="fu">library</span>(effectsize)</span>
+<span id="cb74-15"><a href="workshop-5-one-way-anova-repeated.html#cb74-15" tabindex="-1"></a><span class="fu">eta_squared</span>(anova_result, <span class="at">partial =</span> <span class="cn">FALSE</span>) <span class="co"># asks for eta square</span></span></code></pre></div>
+<p>We might also want to <code>print()</code> the ANOVA results.
+This is because we can see if a Greenhouse-Geisser correction has been applied.<br />
+You can check this using two methods:<br />
+1.
+If the degrees of freedom in the ANOVA output are not whole numbers, and have two decimal places then the assumption of Sphericity was not met and the model has automatically adjusted to account for this.<br />
+2.
+You can use the code below to <code>print()</code> the model and it will tell you if any correction was applied.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="workshop-5-one-way-anova-repeated.html#cb75-1" tabindex="-1"></a><span class="fu">print</span>(anova_result)  <span class="co"># prints the ANOVA result to the console (bottom left panel)</span></span></code></pre></div>
+<p>Once you have looked at the ANOVA output and interpreted, if there is a significant difference you should run planned or post-hoc comparisons.<br />
+For today’s example, we want to use a planned contrast.</p>
+<p>First we need to pull out the <code>emmeans()</code>.<br />
+Change <code>NULL</code> to the independent variable in the model: <code>time</code>.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="workshop-5-one-way-anova-repeated.html#cb76-1" tabindex="-1"></a><span class="co"># for any contrasts or post-hocs we need emmeans</span></span>
+<span id="cb76-2"><a href="workshop-5-one-way-anova-repeated.html#cb76-2" tabindex="-1"></a>em_means <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova_result, <span class="sc">~</span> <span class="cn">NULL</span>)   <span class="co"># NULL should be the independent variable.</span></span></code></pre></div>
+<p>Now let’s run the code for a polynomial contrast.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="workshop-5-one-way-anova-repeated.html#cb77-1" tabindex="-1"></a><span class="co">#let&#39;s run a polynomial contrast</span></span>
+<span id="cb77-2"><a href="workshop-5-one-way-anova-repeated.html#cb77-2" tabindex="-1"></a>poly_contrasts <span class="ot">&lt;-</span> <span class="fu">contrast</span>(em_means, <span class="at">method =</span> <span class="st">&quot;poly&quot;</span>) <span class="co">#sets up an runs the polynomial contrast</span></span>
+<span id="cb77-3"><a href="workshop-5-one-way-anova-repeated.html#cb77-3" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="workshop-5-one-way-anova-repeated.html#cb77-4" tabindex="-1"></a><span class="fu">print</span>(poly_contrasts)</span></code></pre></div>
+<p>It might help to visualise this effect.<br />
+Maybe a line chart could help…</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="workshop-5-one-way-anova-repeated.html#cb78-1" tabindex="-1"></a><span class="co">#let&#39;s visualise the data to help our interpretation</span></span>
+<span id="cb78-2"><a href="workshop-5-one-way-anova-repeated.html#cb78-2" tabindex="-1"></a><span class="fu">ggplot</span>(mydata_long, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> score, <span class="at">fill =</span> time)) <span class="sc">+</span></span>
+<span id="cb78-3"><a href="workshop-5-one-way-anova-repeated.html#cb78-3" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span>  <span class="co"># line for mean</span></span>
+<span id="cb78-4"><a href="workshop-5-one-way-anova-repeated.html#cb78-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb78-5"><a href="workshop-5-one-way-anova-repeated.html#cb78-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of Memory Score Across Time&quot;</span>,  <span class="co"># add a title</span></span>
+<span id="cb78-6"><a href="workshop-5-one-way-anova-repeated.html#cb78-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Time Point&quot;</span>,  <span class="co"># X-axis label</span></span>
+<span id="cb78-7"><a href="workshop-5-one-way-anova-repeated.html#cb78-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Memory Score&quot;</span>)  <span class="co"># Y-axis label</span></span></code></pre></div>
+</div>
+<div id="exercise-six-1" class="section level3 hasAnchor" number="7.0.5">
+<h3><span class="header-section-number">7.0.5</span> <strong>Exercise Six</strong><a href="workshop-5-one-way-anova-repeated.html#exercise-six-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Check Assumptions</p>
+<p>Use the code below to evaluate both normality and homogeneity of variance.<br />
+This will run it for the <code>anova_result</code> model from exercise four.<br />
+You can just add a <code>c</code> into the code to also check for the ANCOVA model.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="workshop-5-one-way-anova-repeated.html#cb79-1" tabindex="-1"></a><span class="co">#testing normality, looking at normal distribution of residuals from the model.</span></span>
+<span id="cb79-2"><a href="workshop-5-one-way-anova-repeated.html#cb79-2" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">residuals</span>(anova_result) <span class="co">#pulls residuals from the model</span></span>
+<span id="cb79-3"><a href="workshop-5-one-way-anova-repeated.html#cb79-3" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="workshop-5-one-way-anova-repeated.html#cb79-4" tabindex="-1"></a><span class="co"># produce QQ-Plot</span></span>
+<span id="cb79-5"><a href="workshop-5-one-way-anova-repeated.html#cb79-5" tabindex="-1"></a><span class="fu">qqPlot</span>(residuals) <span class="co">#produces a qq-plot of residuals</span></span>
+<span id="cb79-6"><a href="workshop-5-one-way-anova-repeated.html#cb79-6" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="workshop-5-one-way-anova-repeated.html#cb79-7" tabindex="-1"></a><span class="co"># produce histogram of residuals</span></span>
+<span id="cb79-8"><a href="workshop-5-one-way-anova-repeated.html#cb79-8" tabindex="-1"></a><span class="fu">hist</span>(residuals, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of Residuals&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Residuals&quot;</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>) </span>
+<span id="cb79-9"><a href="workshop-5-one-way-anova-repeated.html#cb79-9" tabindex="-1"></a></span>
+<span id="cb79-10"><a href="workshop-5-one-way-anova-repeated.html#cb79-10" tabindex="-1"></a><span class="co"># Shapiro test on residuals</span></span>
+<span id="cb79-11"><a href="workshop-5-one-way-anova-repeated.html#cb79-11" tabindex="-1"></a><span class="fu">shapiro.test</span>(residuals) <span class="co">#Shapiro test for residuals</span></span></code></pre></div>
+
 </div>
 </div>
             </section>
@@ -230,8 +333,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="session-2-correlation-and-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ps2010-workshop-2-t-tests-independent.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="workshop-4-one-way-anova-independent.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
