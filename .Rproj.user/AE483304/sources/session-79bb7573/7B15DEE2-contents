@@ -1,6 +1,0 @@
-rmd_files: [
-  "index.Rmd",
-  "01-session-1.Rmd",
-  "02-session-2.Rmd",
-  "03-session-3.Rmd"
-]

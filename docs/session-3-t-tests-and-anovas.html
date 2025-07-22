@@ -23,7 +23,7 @@
 <meta name="author" content="Luke Kendrick / Victoria Bourne" />
 
 
-<meta name="date" content="2025-07-21" />
+<meta name="date" content="2025-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -343,20 +343,12 @@ Change <code>NULL</code> to the relevant details.</p>
 <div id="exercise-four-1" class="section level3 hasAnchor" number="3.3.4">
 <h3><span class="header-section-number">3.3.4</span> <strong>Exercise Four</strong><a href="session-3-t-tests-and-anovas.html#exercise-four-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Run a repeated t-test comparing BPM before and after drinking RedCow.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="session-3-t-tests-and-anovas.html#cb58-1" tabindex="-1"></a><span class="co"># we want to run a t-test to compare the bpm (dependent variable) across time (levels: before vs. after)</span></span>
-<span id="cb58-2"><a href="session-3-t-tests-and-anovas.html#cb58-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> mydata_long<span class="sc">$</span>bpm[mydata_long<span class="sc">$</span>time <span class="sc">==</span> <span class="st">&quot;before&quot;</span>] <span class="co"># tell R which data is &quot;before&quot;</span></span>
-<span id="cb58-3"><a href="session-3-t-tests-and-anovas.html#cb58-3" tabindex="-1"></a>after <span class="ot">&lt;-</span> mydata_long<span class="sc">$</span>bpm[mydata_long<span class="sc">$</span>time <span class="sc">==</span> <span class="st">&quot;after&quot;</span>]   <span class="co"># tell R which data is &quot;after&quot;</span></span>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="session-3-t-tests-and-anovas.html#cb58-1" tabindex="-1"></a>redcow_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(mydata<span class="sc">$</span>before, mydata<span class="sc">$</span>after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-2"><a href="session-3-t-tests-and-anovas.html#cb58-2" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="session-3-t-tests-and-anovas.html#cb58-3" tabindex="-1"></a><span class="fu">print</span>(redcow_t)</span>
 <span id="cb58-4"><a href="session-3-t-tests-and-anovas.html#cb58-4" tabindex="-1"></a></span>
-<span id="cb58-5"><a href="session-3-t-tests-and-anovas.html#cb58-5" tabindex="-1"></a>redcow_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb58-6"><a href="session-3-t-tests-and-anovas.html#cb58-6" tabindex="-1"></a></span>
-<span id="cb58-7"><a href="session-3-t-tests-and-anovas.html#cb58-7" tabindex="-1"></a><span class="fu">print</span>(redcow_t)</span>
-<span id="cb58-8"><a href="session-3-t-tests-and-anovas.html#cb58-8" tabindex="-1"></a></span>
-<span id="cb58-9"><a href="session-3-t-tests-and-anovas.html#cb58-9" tabindex="-1"></a><span class="co"># we also want to find and report the effect size. for a t-test we can use Cohen&#39;s d.</span></span>
-<span id="cb58-10"><a href="session-3-t-tests-and-anovas.html#cb58-10" tabindex="-1"></a><span class="fu">cohens_d</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb58-11"><a href="session-3-t-tests-and-anovas.html#cb58-11" tabindex="-1"></a></span>
-<span id="cb58-12"><a href="session-3-t-tests-and-anovas.html#cb58-12" tabindex="-1"></a><span class="co">#or try:</span></span>
-<span id="cb58-13"><a href="session-3-t-tests-and-anovas.html#cb58-13" tabindex="-1"></a></span>
-<span id="cb58-14"><a href="session-3-t-tests-and-anovas.html#cb58-14" tabindex="-1"></a><span class="fu">t.test</span>(bpm <span class="sc">~</span> time, mydata_long, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb58-5"><a href="session-3-t-tests-and-anovas.html#cb58-5" tabindex="-1"></a><span class="co"># we also want to find and report the effect size. for a t-test we can use Cohen&#39;s d.</span></span>
+<span id="cb58-6"><a href="session-3-t-tests-and-anovas.html#cb58-6" tabindex="-1"></a><span class="fu">cohens_d</span>(mydata<span class="sc">$</span>before, mydata<span class="sc">$</span>after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="exercise-five-1" class="section level3 hasAnchor" number="3.3.5">
 <h3><span class="header-section-number">3.3.5</span> <strong>Exercise Five</strong><a href="session-3-t-tests-and-anovas.html#exercise-five-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -419,7 +411,7 @@ Use the code below to generate a box plot:</p>
 </div>
 <div id="exercise-four-2" class="section level3 hasAnchor" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> <strong>Exercise Four</strong><a href="session-3-t-tests-and-anovas.html#exercise-four-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>RUn the ANOVA</p>
+<p>Run the ANOVA</p>
 <p>Run a one-way independent ANOVA comparing the three groups (lark, neither, owl) as the independent variable and the alertness score as dependent variable.
 For this exercise you should run a post-hoc test.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="session-3-t-tests-and-anovas.html#cb65-1" tabindex="-1"></a><span class="co">#run the ANOVA model</span></span>
@@ -559,7 +551,7 @@ Change <code>NULL</code> to the independent variable in the model: <code>time</c
 <p>It might help to visualise this effect.<br />
 Maybe a line chart could help…</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="session-3-t-tests-and-anovas.html#cb78-1" tabindex="-1"></a><span class="co">#let&#39;s visualise the data to help our interpretation</span></span>
-<span id="cb78-2"><a href="session-3-t-tests-and-anovas.html#cb78-2" tabindex="-1"></a><span class="fu">ggplot</span>(mydata_long, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> score, <span class="at">fill =</span> time)) <span class="sc">+</span></span>
+<span id="cb78-2"><a href="session-3-t-tests-and-anovas.html#cb78-2" tabindex="-1"></a><span class="fu">ggplot</span>(longdata, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> score, <span class="at">fill =</span> time)) <span class="sc">+</span></span>
 <span id="cb78-3"><a href="session-3-t-tests-and-anovas.html#cb78-3" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span>  <span class="co"># line for mean</span></span>
 <span id="cb78-4"><a href="session-3-t-tests-and-anovas.html#cb78-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
 <span id="cb78-5"><a href="session-3-t-tests-and-anovas.html#cb78-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of Memory Score Across Time&quot;</span>,  <span class="co"># add a title</span></span>
