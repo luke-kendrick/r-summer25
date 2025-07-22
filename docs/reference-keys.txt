@@ -24,6 +24,7 @@ homoscedasticity
 evaluate-the-number-of-outliers
 session-3-t-tests-and-anovas
 code-used-in-this-session-2
+all-packages-for-t-tests
 ps2010-workshop-t-tests-independent
 exercise-one
 exercise-two
