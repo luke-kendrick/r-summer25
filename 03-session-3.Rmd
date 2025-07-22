@@ -1,6 +1,15 @@
 # Session 3: t-Tests and ANOVAs
 
 ## Code Used in this Session
+## All Packages for T-tests
+
+```r
+library(tidyverse)
+install.packages("rstatix")
+library(rstatix)
+install.packages("effectsize")
+library(effectsize)
+```
 
 ## **PS2010 Workshop: T-tests (Independent)**
 
